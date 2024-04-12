@@ -53,5 +53,36 @@ namespace ConsoleApp1
 
 
         }
+
+        //pascal triange
+        public static List<List<int>> Pascal_Triangle(int n)
+        {
+            List<List<int>> res = new List<List<int>>();
+            res.Add(new List<int> { 1 });
+            for (int i = 0; i < n; i++) 
+            {
+                var cc = new List<int>();
+                for (int j = 0; j <= res[i].Count() ;  j++)
+                {
+                   
+                    if (j == 0)
+                    {
+                        //res.Add(cc);
+                        cc.Add(1);
+                    }
+                    else if (j == res[i].Count())
+                    {
+                        cc.Add(1);
+                    }
+                    else
+                    {
+                        //res[i].Add(res[i-1][j-1] + res[i - 1][j]);
+                        cc.Add(res[i][j - 1] + res[i][j]);
+                    }
+                }
+                res.Add(cc);
+            }
+            return res;
+        }
     }
 }
