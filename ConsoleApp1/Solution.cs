@@ -58,6 +58,11 @@ namespace ConsoleApp1
         public static List<List<int>> Pascal_Triangle(int n)
         {
             List<List<int>> res = new List<List<int>>();
+            if ( n == 0)
+            {
+                return res;
+            }
+           
             res.Add(new List<int> { 1 });
             for (int i = 0; i < n; i++) 
             {
@@ -83,6 +88,28 @@ namespace ConsoleApp1
                 res.Add(cc);
             }
             return res;
+        }
+
+        //Contains Duplicates
+
+        public static bool Contains_Duplicate(int[] nums)
+        {
+            var n = nums.GroupBy(x => x);
+            var a = n.Any(x => x.Count() > 1);
+            return a;
+        }
+        public static bool Contains_Duplicate1(int[] nums)
+        {
+            HashSet<int> hash = new HashSet<int>();
+            foreach (int n in nums)
+            {
+                if (hash.Contains(n))
+                {
+                    return false;
+                }
+                hash.Add(n);
+            }
+            return true;
         }
     }
 }

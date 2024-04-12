@@ -19,16 +19,19 @@ namespace ConsoleApp1
 
             //var wxs = Solution.NumIslands(grid);
             //Console.WriteLine(wxs);
-            var s = Solution.Pascal_Triangle(5);
-            for (int i = 0; i < s.Count; i++)
-            {
-                Console.Write("List" + (i + 1) + ": ");
-                foreach (var num in s[i])
-                {
-                    Console.Write(num + " ");
-                }
-                Console.WriteLine();
-            }
+            //var s = Solution.Pascal_Triangle(0);
+            //for (int i = 0; i < s.Count; i++)
+            //{
+            //    Console.Write("List" + (i + 1) + ": ");
+            //    foreach (var num in s[i])
+            //    {
+            //        Console.Write(num + " ");
+            //    }
+            //    Console.WriteLine();
+            //}
+            int[] nums = { 1, 2, 3, 5 };
+            var y = Solution.Contains_Duplicate(nums);
+            Console.WriteLine(y);
         }
     }
 }
