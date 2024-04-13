@@ -373,6 +373,27 @@ namespace ConsoleApp1
             return null;
         }
 
-        
+        public static int isDefaulted()
+        {
+            //0 is ok, 1 is defauted
+            int[] numbers = { 0, 0, 0, 1, 1, 1, 1, 1 };
+            int l= 0;
+            int r = numbers.Length - 1;
+            while (l < r)
+            {
+                int m = (l + r) / 2;
+                if (numbers[m] == 0)
+                {
+                    l = m + 1;
+                }
+                else if (numbers[m] == 1)
+                {
+                    r = m - 1;
+                }
+            }
+            return l;//add condition to check before and after the element as well
+        }
+
+
     }
 }

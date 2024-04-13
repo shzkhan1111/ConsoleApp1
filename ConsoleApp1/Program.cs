@@ -50,7 +50,7 @@ namespace ConsoleApp1
             //head.next.next.next.next = new ListNode(5);
             //Solution.reverseListNode(null);
 
-            int[] numbers = { 1, 2, 3, 4, 5 , 8 , 9 , 10};
+            //int[] numbers = { 0, 0, 0, 0, 0 , 1 , 1 , 1};
             //int[] numbers = { 1, 2, 3, 4, 5 };
             //var e = Solution.twoSum(numbers , 9);
             //var e = Solution.Palindrome_ListNode();
@@ -62,7 +62,7 @@ namespace ConsoleApp1
             //{
             //    Console.Write("No");
             //}
-            var Ss = Solution.oddEvenLinkList();
+            var Ss = Solution.isDefaulted();
             //var Ss = Solution.BinarySearch(numbers , 8);
 
 
