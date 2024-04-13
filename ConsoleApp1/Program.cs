@@ -62,7 +62,7 @@ namespace ConsoleApp1
             //{
             //    Console.Write("No");
             //}
-            var Ss = Solution.toLowerCase("SIOjeoiej");
+            var Ss = Solution.oddEvenLinkList();
             //var Ss = Solution.BinarySearch(numbers , 8);
 
 

@@ -347,5 +347,32 @@ namespace ConsoleApp1
 
             return res;
         }
+
+
+        public static ListNode oddEvenLinkList()
+        {
+            ListNode listnode = new ListNode(1);
+            listnode.next = new ListNode(2);
+            listnode.next.next = new ListNode(3);
+            listnode.next.next.next = new ListNode(4);
+            listnode.next.next.next.next = new ListNode(5);
+            listnode.next.next.next.next.next = new ListNode(6);
+
+            ListNode odd = listnode;
+            ListNode even = odd.next;
+            ListNode evenNode = even;
+            while (even?.next != null)
+            {
+                odd.next = even.next;
+                odd = odd.next;
+                even.next = odd.next;
+                even = even.next;
+            }
+            ListNode res = odd;
+            res.next = even;
+            return null;
+        }
+
+        
     }
 }
