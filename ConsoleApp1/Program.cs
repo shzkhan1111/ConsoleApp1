@@ -50,17 +50,20 @@ namespace ConsoleApp1
             //head.next.next.next.next = new ListNode(5);
             //Solution.reverseListNode(null);
 
-            //int[] numbers = { 1, 2, 3, 4, 5 };  
+            int[] numbers = { 1, 2, 3, 4, 5 , 8 , 9 , 10};
+            //int[] numbers = { 1, 2, 3, 4, 5 };
             //var e = Solution.twoSum(numbers , 9);
-            var e = Solution.Palindrome_ListNode();
-            if (e)
-            {
-                Console.Write("Yes");
-            }
-            else
-            {
-                Console.Write("No");
-            }
+            //var e = Solution.Palindrome_ListNode();
+            //if (e)
+            //{
+            //    Console.Write("Yes");
+            //}
+            //else
+            //{
+            //    Console.Write("No");
+            //}
+            var Ss = Solution.toLowerCase("SIOjeoiej");
+            //var Ss = Solution.BinarySearch(numbers , 8);
 
 
         }

@@ -303,5 +303,49 @@ namespace ConsoleApp1
             return prev;
         }
 
+
+        public static int BinarySearch(int[] numbers, int n)
+        {
+            int right = numbers.Length - 1;
+            int left = 0;
+            while (right > left)
+            {
+                int middle = (left + right)/2;
+                if (numbers[middle] > n)
+                {
+                    right = middle - 1;
+                }
+                else if (numbers[middle] < n)
+                {
+                    left = middle + 1;
+                }
+                else
+                {
+                    return middle;
+                }
+            }
+            return -1;
+        }
+
+        public static string toLowerCase(string str)
+        {
+            str = "HEYD";
+            string res = "";
+            int subNum = 'A' - 'a';
+            for (int i = 0; i < str.Length;i++)
+            {
+                if (str[i] >= 'A' && str[i] <= 'Z')
+                {
+                    res += (char)(str[i] - subNum);
+                }
+                else
+                {
+                    res += (char) str[i];
+
+                }
+            }
+
+            return res;
+        }
     }
 }
