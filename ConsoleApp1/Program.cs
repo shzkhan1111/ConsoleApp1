@@ -6,7 +6,17 @@ namespace ConsoleApp1
 {
     class Program
     {
-       
+        public class ListNode
+        {
+            public int val;
+            public ListNode next;
+
+            public ListNode(int val = 0, ListNode next = null)
+            {
+                this.val = val;
+                this.next = next;
+            }
+        }
 
         static void Main(string[] args)
         {
@@ -29,9 +39,18 @@ namespace ConsoleApp1
             //    }
             //    Console.WriteLine();
             //}
-            int[] nums = { 1, 2, 3, 5 };
-            var y = Solution.Contains_Duplicate(nums);
-            Console.WriteLine(y);
+            //int[] nums = { 1, 2, 3, 5 };
+            //var y = Solution.Contains_Duplicate(nums);
+            //Console.WriteLine(y);
+
+            ListNode head = new ListNode(1);
+            head.next = new ListNode(2);
+            head.next.next = new ListNode(3);
+            head.next.next.next = new ListNode(4);
+            head.next.next.next.next = new ListNode(5);
+            Solution.reverseListNode(null);
+
+
         }
     }
 }
