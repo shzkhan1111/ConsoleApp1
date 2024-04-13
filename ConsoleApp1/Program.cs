@@ -43,12 +43,24 @@ namespace ConsoleApp1
             //var y = Solution.Contains_Duplicate(nums);
             //Console.WriteLine(y);
 
-            ListNode head = new ListNode(1);
-            head.next = new ListNode(2);
-            head.next.next = new ListNode(3);
-            head.next.next.next = new ListNode(4);
-            head.next.next.next.next = new ListNode(5);
-            Solution.reverseListNode(null);
+            //ListNode head = new ListNode(1);
+            //head.next = new ListNode(2);
+            //head.next.next = new ListNode(3);
+            //head.next.next.next = new ListNode(4);
+            //head.next.next.next.next = new ListNode(5);
+            //Solution.reverseListNode(null);
+
+            //int[] numbers = { 1, 2, 3, 4, 5 };  
+            //var e = Solution.twoSum(numbers , 9);
+            var e = Solution.Palindrome_ListNode();
+            if (e)
+            {
+                Console.Write("Yes");
+            }
+            else
+            {
+                Console.Write("No");
+            }
 
 
         }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using static ConsoleApp1.Program;
@@ -147,5 +149,159 @@ namespace ConsoleApp1
             return prevNode;
 
         }
+
+        //two sum solution 
+
+        public static int[] twoSum1(int[] numbers, int n)
+        {
+            int[] res = new int[numbers.Length];
+            if (numbers.Length < 2)
+            {
+                return res;
+            }
+            
+            HashSet<int> needToFind = new HashSet<int>();
+            foreach (int i in numbers)
+            {
+                int t = n - i;
+                if (needToFind.Contains(t))
+                {
+                    return res = new int[] { i,t};
+                }
+                else
+                {
+                    needToFind.Add(i);
+                }
+
+            }
+            return res;
+
+        }
+
+
+        public static int[] twoSum(int[] numbers, int n)
+        {
+            //two pointer approach
+            //for sorted array 
+            int a_pointer = 0;
+            int b_pointer = numbers.Length - 1;
+            while (b_pointer > a_pointer)
+            {
+                int currentSum = numbers[a_pointer] + numbers[b_pointer];
+                if (currentSum > n)
+                {
+                    //reduce the sum
+                    b_pointer--;
+                }
+                else if (currentSum < n)
+                {
+                    //increase the curent sum
+                    a_pointer++;
+                }
+                else
+                {
+                    return new int[] { numbers[a_pointer], numbers[b_pointer] };
+                }
+            }
+            return new int[] { 0, 0 };
+        }
+
+        public static ListNode Palindrome_ListNode1()
+        {
+            #region initialize
+
+            ListNode head = new ListNode(1);
+            head.next = new ListNode(2);
+            head.next.next = new ListNode(3);
+            head.next.next.next = new ListNode(4);
+            head.next.next.next.next = new ListNode(5);
+            head.next.next.next.next.next = new ListNode(4);
+            head.next.next.next.next.next.next = new ListNode(3);
+            head.next.next.next.next.next.next.next = new ListNode(2);
+            head.next.next.next.next.next.next.next.next = new ListNode(9);
+
+
+            List<int> vals = new List<int>();   
+
+            #endregion
+            ListNode prevNode = null;
+            while (head != null)
+            {
+                vals.Add(head.val);
+                ListNode temp = head.next;
+                head.next = prevNode;
+                prevNode = head;
+                head = temp;
+                
+            }
+            int i = 0;
+            while (prevNode != null)
+            {
+                if (prevNode.val != vals[i++])
+                {
+                    Console.WriteLine("Not a Palindrome");
+                    return prevNode;
+                }
+                prevNode = prevNode.next;
+            }
+            Console.WriteLine("Palindrome");
+
+
+
+            return prevNode;
+
+        }
+        public static bool Palindrome_ListNode()
+        {
+            
+            #region initialize
+
+            ListNode head = new ListNode(1);
+            head.next = new ListNode(2);
+            head.next.next = new ListNode(3);
+            head.next.next.next = new ListNode(4);
+            head.next.next.next.next = new ListNode(5);
+            head.next.next.next.next.next = new ListNode(5);
+            head.next.next.next.next.next.next = new ListNode(4);
+            head.next.next.next.next.next.next.next = new ListNode(3);
+            head.next.next.next.next.next.next.next.next = new ListNode(2);
+            head.next.next.next.next.next.next.next.next.next = new ListNode(1);
+            #endregion
+            ListNode first = head;
+            ListNode second = head;
+
+            while (first != null && first.next?.next != null)
+            {
+                first = first.next.next;
+                second = second.next;
+            }
+            second = reverseLis(second);
+            first = head;
+            while (second != null && first != null)
+            {
+                if (first.val != second.val)
+                {
+                    return false;
+                }
+                second = second.next;
+                first = first.next;
+            }
+            return true;
+            
+            //return null;
+        }
+        public static ListNode reverseLis(ListNode listnode)
+        {
+            ListNode prev = null;
+            while (listnode != null )
+            {
+                ListNode temp = listnode.next;
+                listnode.next = prev;
+                prev = listnode;
+                listnode = temp;
+            }
+            return prev;
+        }
+
     }
 }
