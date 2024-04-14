@@ -526,7 +526,7 @@ namespace ConsoleApp1
                     }
                 }
 
-                
+
 
 
                 if (s1[s1Pointer] != s2[s2Pointer])
@@ -537,7 +537,7 @@ namespace ConsoleApp1
                 s1Pointer--;
                 s2Pointer--;
             }
-            
+
             if (s1Pointer > 0)
             {
                 s1Pointer -= s1ToSkip;
@@ -560,5 +560,201 @@ namespace ConsoleApp1
         }
 
 
+        public static void isLinkListRepeated1()
+        {
+            // Create nodes
+            ListNode listnode = new ListNode(1);
+            ListNode listnode2 = new ListNode(2);
+            ListNode listnode3 = new ListNode(3);
+            ListNode listnode4 = new ListNode(4);
+            ListNode listnode5 = new ListNode(5);
+            ListNode listnode6 = new ListNode(6);
+
+            // Connect nodes to form a linked list
+            listnode.next = listnode2;
+            listnode2.next = listnode3;
+            listnode3.next = listnode4;
+            listnode4.next = listnode5;
+            listnode5.next = listnode6;
+
+            // Create a cycle by connecting the last node to a previous node
+            listnode6.next = listnode3; // This creates a cycle between node 6 and node 3
+
+
+            HashSet<ListNode> hash = new HashSet<ListNode>();
+
+            hash.Add(listnode);
+            listnode = listnode.next;
+            while (listnode != null)
+            {
+                if (hash.Contains(listnode))
+                {
+                    Console.WriteLine("Contains Values");
+                    return;
+                }
+                hash.Add(listnode);
+                listnode = listnode.next;
+            }
+        }
+
+        public static void isLinkListRepeated()
+        {
+            // Create nodes
+            ListNode listnode = new ListNode(1);
+            ListNode listnode2 = new ListNode(2);
+            ListNode listnode3 = new ListNode(3);
+            ListNode listnode4 = new ListNode(4);
+            ListNode listnode5 = new ListNode(5);
+            ListNode listnode6 = new ListNode(6);
+
+            // Connect nodes to form a linked list
+            listnode.next = listnode2;
+            listnode2.next = listnode3;
+            listnode3.next = listnode4;
+            listnode4.next = listnode5;
+            listnode5.next = listnode6;
+
+            // Create a cycle by connecting the last node to a previous node
+            listnode6.next = listnode3; // This creates a cycle between node 6 and node 3
+
+            ListNode copy = listnode;
+            if (listnode == null)
+            {
+                return;
+            }
+            while (listnode?.next?.next != null)
+            {
+                copy = copy.next;
+                listnode = listnode.next.next;
+                if (listnode == copy)
+                {
+                    Console.WriteLine("Contains Cycle");
+                    return;
+                }
+            }
+            Console.WriteLine("Doesnt contains Cycle");
+            return;
+
+        }
+        public static void reversedStringInPlace()
+        {
+            char[] c = new char[] { 'H', 'E', 'L', 'L', '0' };
+            int a_p = 0;
+            int b_p = c.Length - 1;
+            while (a_p < b_p)
+            {
+                char t = c[a_p];
+                c[a_p] = c[b_p];
+                c[b_p] = t;
+                a_p++; b_p--;
+            }
+        }
+
+        public static void validPalindrome()
+        {
+            char[] c = new char[] { 'H', 'E', 'L', 'L', '0' };
+            int a_p = 0;
+            int b_p = c.Length - 1;
+            while (a_p < b_p)
+            {
+                char t = c[a_p];
+                c[a_p] = c[b_p];
+                c[b_p] = t;
+                a_p++; b_p--;
+            }
+        }
+
+        public static ListNode Middle_ListNode()
+        {
+
+            #region initialize
+
+            ListNode head = new ListNode(1);
+            head.next = new ListNode(2);
+            head.next.next = new ListNode(3);
+            head.next.next.next = new ListNode(4);
+            head.next.next.next.next = new ListNode(5);
+            head.next.next.next.next.next = new ListNode(5);
+            head.next.next.next.next.next.next = new ListNode(4);
+            head.next.next.next.next.next.next.next = new ListNode(3);
+            head.next.next.next.next.next.next.next.next = new ListNode(2);
+            head.next.next.next.next.next.next.next.next.next = new ListNode(1);
+
+            #endregion
+
+            ListNode first = head;
+            ListNode second = head;
+
+            while (second?.next?.next != null)
+            {
+                second = second.next.next;
+                first = first.next;
+            }
+            return first;
+
+        }
+
+
+        public static ListNode Merge2List()
+        {
+            ListNode l1 = new ListNode(1);
+            l1.next = new ListNode(3);
+            l1.next.next = new ListNode(5);
+            l1.next.next.next = new ListNode(7);
+
+            ListNode l2 = new ListNode(2);
+            l2.next = new ListNode(4);
+            l2.next.next = new ListNode(6);
+            l2.next.next.next = new ListNode(8);
+            l2.next.next.next.next = new ListNode(10);
+            l2.next.next.next.next.next = new ListNode(12);
+
+            ListNode head;
+
+            if (l1.val > l2.val)
+            {
+                head = l2;
+                l2 = l2.next;
+            }
+            else
+            {
+                head = l1;
+                l1 = l1.next;
+            }
+            ListNode temp = head;
+            while (l1.next != null || l2.next != null)
+            {
+                if (l1.next != null && l2.next != null)
+                {
+                    if (l1.val > l2.val)
+                    {
+                        head.next = l2;
+                        l2 = l2.next;
+                    }
+                    else
+                    {
+                        head.next = l1;
+                        l1 = l1.next;
+                    }
+                    head = head.next;
+                }
+                else if (l1.next != null)
+                {
+                    head.next = l1;
+                    l1 = l1.next;
+                    head = head.next;
+
+                }
+                else if (l2.next != null)
+                {
+                    head.next = l2;
+                    l2 = l2.next;
+                    head = head.next;
+                }
+            }
+
+            return temp;
+
+        }
     }
 }
