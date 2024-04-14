@@ -37,7 +37,7 @@ namespace ConsoleApp1
         }
         public static int BFS(char[][] grid, int i, int j)
         {
-            if (i < 0 || i > grid.Length - 1  || j < 0 )
+            if (i < 0 || i > grid.Length - 1 || j < 0)
             {
                 //base condition 
                 return 0;
@@ -50,8 +50,8 @@ namespace ConsoleApp1
             grid[i][j] = '0';
             BFS(grid, i + 1, j);
             BFS(grid, i - 1, j);
-            BFS(grid, i , j + 1);
-            BFS(grid, i , j - 1);
+            BFS(grid, i, j + 1);
+            BFS(grid, i, j - 1);
             return 0;
 
 
@@ -61,18 +61,18 @@ namespace ConsoleApp1
         public static List<List<int>> Pascal_Triangle(int n)
         {
             List<List<int>> res = new List<List<int>>();
-            if ( n == 0)
+            if (n == 0)
             {
                 return res;
             }
-           
+
             res.Add(new List<int> { 1 });
-            for (int i = 0; i < n; i++) 
+            for (int i = 0; i < n; i++)
             {
                 var cc = new List<int>();
-                for (int j = 0; j <= res[i].Count() ;  j++)
+                for (int j = 0; j <= res[i].Count(); j++)
                 {
-                   
+
                     if (j == 0)
                     {
                         //res.Add(cc);
@@ -159,14 +159,14 @@ namespace ConsoleApp1
             {
                 return res;
             }
-            
+
             HashSet<int> needToFind = new HashSet<int>();
             foreach (int i in numbers)
             {
                 int t = n - i;
                 if (needToFind.Contains(t))
                 {
-                    return res = new int[] { i,t};
+                    return res = new int[] { i, t };
                 }
                 else
                 {
@@ -221,7 +221,7 @@ namespace ConsoleApp1
             head.next.next.next.next.next.next.next.next = new ListNode(9);
 
 
-            List<int> vals = new List<int>();   
+            List<int> vals = new List<int>();
 
             #endregion
             ListNode prevNode = null;
@@ -232,7 +232,7 @@ namespace ConsoleApp1
                 head.next = prevNode;
                 prevNode = head;
                 head = temp;
-                
+
             }
             int i = 0;
             while (prevNode != null)
@@ -253,7 +253,7 @@ namespace ConsoleApp1
         }
         public static bool Palindrome_ListNode()
         {
-            
+
             #region initialize
 
             ListNode head = new ListNode(1);
@@ -287,13 +287,13 @@ namespace ConsoleApp1
                 first = first.next;
             }
             return true;
-            
+
             //return null;
         }
         public static ListNode reverseLis(ListNode listnode)
         {
             ListNode prev = null;
-            while (listnode != null )
+            while (listnode != null)
             {
                 ListNode temp = listnode.next;
                 listnode.next = prev;
@@ -310,7 +310,7 @@ namespace ConsoleApp1
             int left = 0;
             while (right > left)
             {
-                int middle = (left + right)/2;
+                int middle = (left + right) / 2;
                 if (numbers[middle] > n)
                 {
                     right = middle - 1;
@@ -332,7 +332,7 @@ namespace ConsoleApp1
             str = "HEYD";
             string res = "";
             int subNum = 'A' - 'a';
-            for (int i = 0; i < str.Length;i++)
+            for (int i = 0; i < str.Length; i++)
             {
                 if (str[i] >= 'A' && str[i] <= 'Z')
                 {
@@ -340,7 +340,7 @@ namespace ConsoleApp1
                 }
                 else
                 {
-                    res += (char) str[i];
+                    res += (char)str[i];
 
                 }
             }
@@ -377,7 +377,7 @@ namespace ConsoleApp1
         {
             //0 is ok, 1 is defauted
             int[] numbers = { 0, 0, 0, 1, 1, 1, 1, 1 };
-            int l= 0;
+            int l = 0;
             int r = numbers.Length - 1;
             while (l < r)
             {
@@ -392,6 +392,171 @@ namespace ConsoleApp1
                 }
             }
             return l;//add condition to check before and after the element as well
+        }
+
+        public static void isStringBackSpacedEqual1()
+        {
+            string s1 = "scf&&lw&";
+            string s2 = "sl";
+            List<char> c1 = new List<char>();
+            List<char> c2 = new List<char>();
+
+            int shorterLength = 0, maxLength = 0;
+            string shorterString, longerString;
+            if (s1.Length > s2.Length)
+            {
+                shorterString = s2;
+                longerString = s1;
+                shorterLength = s2.Length;
+                maxLength = s1.Length;
+
+            }
+            else
+            {
+                shorterString = s1;
+                longerString = s2;
+                shorterLength = s1.Length;
+                maxLength = s2.Length;
+            }
+            int i = 0;
+            int j = 0;
+            while (j < maxLength)
+            {
+                if (i < shorterLength)
+                {
+                    if (shorterString[i] != '&')
+                    {
+                        c1.Add((char)shorterString[i]);
+                    }
+                    else
+                    {
+                        if (c1.Count > 0)
+                        {
+                            c1.RemoveAt(c1.Count - 1);
+                        }
+                    }
+                    i++;
+                }
+
+                if (longerString[j] != '&')
+                {
+                    c2.Add((char)longerString[j]);
+                }
+                else
+                {
+                    if (c2.Count > 0)
+                    {
+                        c2.RemoveAt(c2.Count - 1);
+                    }
+                }
+                j++;
+            }
+
+            if (c1.Count() != c2.Count())
+            {
+                Console.WriteLine("Not Equal");
+                return;
+            }
+            for (int k = 0; k < c1.Count(); k++)
+            {
+                if (c1[k] != c2[k])
+                {
+                    Console.WriteLine("Not Equal");
+                    return;
+                }
+            }
+            Console.WriteLine("Equal");
+            return;
+
+        }
+
+
+        public static void isStringBackSpacedEqual()
+        {
+            string s1 = "scf&&lw&";
+            string s2 = "s2&l";
+            int s1Pointer = s1.Length - 1;
+            int s2Pointer = s2.Length - 1;
+            int s1ToSkip = 0;
+            int s2ToSkip = 0;
+
+            bool continueFlag = false;
+            while (s1Pointer > 0 || s2Pointer > 0)
+            {
+                continueFlag = false;
+                if (s1Pointer > 0)
+                {
+                    if (s1[s1Pointer] == '&')
+                    {
+                        s1ToSkip++;
+                        s1Pointer--;
+                        continueFlag = true;
+                    }
+                    else if (s1ToSkip > 0)
+                    {
+                        s1ToSkip--;
+                        s1Pointer--;
+                        continueFlag = true;
+                    }
+
+                    if (continueFlag)
+                    {
+                        continue;
+                    }
+                }
+
+                if (s2Pointer > 0)
+                {
+                    if (s2[s2Pointer] == '&')
+                    {
+                        s2ToSkip++;
+                        s2Pointer--;
+                        continueFlag = true;
+                    }
+                    else if (s2ToSkip > 0)
+                    {
+                        s2ToSkip--;
+                        s2Pointer--;
+                        continueFlag = true;
+                    }
+
+                    if (continueFlag)
+                    {
+                        continue;
+                    }
+                }
+
+                
+
+
+                if (s1[s1Pointer] != s2[s2Pointer])
+                {
+                    Console.WriteLine("Not Equal");
+                    return;
+                }
+                s1Pointer--;
+                s2Pointer--;
+            }
+            
+            if (s1Pointer > 0)
+            {
+                s1Pointer -= s1ToSkip;
+                s1ToSkip = 0;
+            }
+            if (s2Pointer > 0)
+            {
+                s2Pointer -= s2ToSkip;
+                s2ToSkip = 0;
+            }
+
+            if (s2Pointer > 0 || s1Pointer > 0)
+            {
+                Console.WriteLine("Not Equal");
+                return;
+            }
+            Console.WriteLine("Equal");
+            return;
+
         }
 
 

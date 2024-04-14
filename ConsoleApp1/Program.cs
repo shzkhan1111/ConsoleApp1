@@ -62,7 +62,7 @@ namespace ConsoleApp1
             //{
             //    Console.Write("No");
             //}
-            var Ss = Solution.isDefaulted();
+            Solution.isStringBackSpacedEqual();
             //var Ss = Solution.BinarySearch(numbers , 8);
 
 
