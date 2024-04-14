@@ -62,7 +62,7 @@ namespace ConsoleApp1
             //{
             //    Console.Write("No");
             //}
-            Solution.Merge2List();
+            Solution.sortSquare();
             //var Ss = Solution.BinarySearch(numbers , 8);
 
 

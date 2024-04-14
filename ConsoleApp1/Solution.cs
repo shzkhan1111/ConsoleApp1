@@ -756,5 +756,106 @@ namespace ConsoleApp1
             return temp;
 
         }
+
+        public static void ReturnToOrigin()
+        {
+            string movements = "UDLRRLPUDD";
+            int lr = 0, ud = 0;
+            for (int i = 0; i < movements.Length; i++)
+            {
+                switch (movements[i])
+                {
+                    case 'U':
+                        ud++;
+                        break;
+
+                    case 'D':
+                        ud--;
+                        break;
+
+                    case 'L':
+                        lr--;
+                        break;
+                    case 'R':
+                        lr++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (lr == 0 && ud == 0)
+            {
+                Console.WriteLine("Yes");
+            }
+            else
+            {
+                Console.WriteLine("No");
+            }
+
+        }
+
+        public static bool CanVisitAllRooms()
+        {
+            IList<IList<int>> rooms = new List<IList<int>> {
+            new List<int> {1, 3},
+            new List<int> {3, 0, 1},
+            new List<int> {2},
+            new List<int> {0},
+            new List<int> {0}
+        };
+
+            bool[] seen = new bool[rooms.Count()];
+            foreach (var r in rooms)
+            {
+                foreach (var key in r)
+                {
+                    seen[key] = true;
+                }
+            }
+
+            var isAllSeen = !seen.Any(x => !x);
+            return isAllSeen;
+        }
+
+        public static void sortSquare()
+        {
+            //this list is sorted
+            int[] numbers = { -4, -1, 0, 3, 10 };
+            //find the index of first non negative number 
+            int negativePointer = 0;
+            while (negativePointer < numbers.Length && numbers[negativePointer] < 0)
+            {
+                negativePointer++;
+            }
+            int pp = negativePointer;
+            int np = negativePointer - 1;
+            int[] sorted = new int[numbers.Length];
+            int c = 0;
+            while (pp < numbers.Length && np >= 0)
+            {
+                if ( (numbers[pp] * numbers[pp] ) < ( numbers[np] * numbers[np] ))
+                {
+                    sorted[c] = numbers[pp] * numbers[pp];
+                    pp++;
+                }
+                else
+                {
+                    sorted[c] = numbers[np] * numbers[np];
+                    np--;
+                }
+                c++;
+            }
+            while (pp < numbers.Length)
+            {
+                sorted[c] = numbers[pp] * numbers[pp];
+                pp++;c++;
+                
+            }
+            while(np > 0)
+            {
+                sorted[c] = numbers[np] * numbers[np];
+                np--; c++;
+            }
+        }
     }
 }
