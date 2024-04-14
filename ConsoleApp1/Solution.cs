@@ -857,5 +857,34 @@ namespace ConsoleApp1
                 np--; c++;
             }
         }
+
+        public static int maxAreaOfContainer()
+        {
+            int[] inputs = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
+            int a_pointer = 0;
+            int b_pointer = inputs.Length - 1;
+            int max_area = 0;
+            int temp_a = 0, temp_b = 0;
+            while (a_pointer < b_pointer)
+            {
+                int current_MaxArea = Math.Min(inputs[a_pointer], inputs[b_pointer]) * (b_pointer - a_pointer);
+                if (current_MaxArea > max_area)
+                {
+                    max_area = current_MaxArea;
+                    temp_a = a_pointer;
+                    temp_b = b_pointer;
+                }
+                if (inputs[a_pointer] > inputs[b_pointer])
+                {
+                    b_pointer--;
+                }
+                else
+                {
+                    a_pointer++;
+                }
+            }
+            return max_area;
+
+        }
     }
 }
