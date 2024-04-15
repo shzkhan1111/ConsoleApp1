@@ -833,7 +833,7 @@ namespace ConsoleApp1
             int c = 0;
             while (pp < numbers.Length && np >= 0)
             {
-                if ( (numbers[pp] * numbers[pp] ) < ( numbers[np] * numbers[np] ))
+                if ((numbers[pp] * numbers[pp]) < (numbers[np] * numbers[np]))
                 {
                     sorted[c] = numbers[pp] * numbers[pp];
                     pp++;
@@ -848,10 +848,10 @@ namespace ConsoleApp1
             while (pp < numbers.Length)
             {
                 sorted[c] = numbers[pp] * numbers[pp];
-                pp++;c++;
-                
+                pp++; c++;
+
             }
-            while(np > 0)
+            while (np > 0)
             {
                 sorted[c] = numbers[np] * numbers[np];
                 np--; c++;
@@ -885,6 +885,66 @@ namespace ConsoleApp1
             }
             return max_area;
 
+        }
+
+
+        public static int threeSumClosestBruteForce()
+        {
+            //brute force approach 
+            int[] inputs = { 1, 8, 6, 2, 5, 4, 8, 3, 7, 9, 10, 21, 25 };
+            int target = 25;
+            (int first, int second, int third) indexes = (0, 0, 0);
+            int currentClosest = int.MaxValue;
+            for (int i = 0; i < inputs.Length - 2; i++)
+            {
+                for (int j = i + 1; j < inputs.Length - 1; j++)
+                {
+                    for (int k = j + 1; j < inputs.Length; j++)
+                    {
+                        int currentSum = Math.Abs(inputs[i] + inputs[j] + inputs[k] - target);
+                        if (currentClosest > currentSum)
+                        {
+                            currentClosest = currentSum;
+                            indexes = (inputs[i], inputs[j], inputs[k]);
+                        }
+                    }
+                }
+            }
+
+            return currentClosest;
+        }
+        public static int threeSumClosest2Pointer()
+        {
+            //brute force approach 
+            int[] inputs = { 1, 8, 6, 2, 5, 4, 8, 3, 7, 9, 10, 21, 25 };
+            inputs = inputs.OrderBy(x => x).ToArray(); 
+            int target = 1;
+            //(int first, int second, int third) indexes = (0, 0, 0);
+            int currentClosest = int.MaxValue;
+            
+            for (int i = 0; i < inputs.Length - 2; i++)
+            {
+                int a_p = i+1, b_p = inputs.Length - 1;
+                while (a_p < b_p)
+                {
+                    int currentSum = (inputs[i] + inputs[a_p] + inputs[b_p]);
+                    if (currentSum > target)
+                    {
+                        b_p--;
+                    }
+                    else
+                    {
+                        a_p++;
+                    }
+                    if (Math.Abs(currentSum - target) <Math.Abs( currentClosest - target))
+                    {
+                        currentClosest = currentSum;
+                        //indexes = (i , a_p , b_p);
+                    }
+                }
+            }
+
+            return currentClosest;
         }
     }
 }

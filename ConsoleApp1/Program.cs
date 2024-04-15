@@ -62,7 +62,7 @@ namespace ConsoleApp1
             //{
             //    Console.Write("No");
             //}
-            Solution.maxAreaOfContainer();
+            Solution.threeSumClosest2Pointer();
             //var Ss = Solution.BinarySearch(numbers , 8);
 
 
