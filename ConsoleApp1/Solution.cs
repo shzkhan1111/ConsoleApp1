@@ -998,5 +998,52 @@ namespace ConsoleApp1
             }
             return res;
         }
+
+        public static TreeNode TreePruning()
+        {
+            TreeNode root = new TreeNode(0);
+            root.left = new TreeNode(0);
+            root.right = new TreeNode(0);
+            root.left.left = new TreeNode(0);
+            root.left.right = new TreeNode(0);
+            root.right.left = new TreeNode(0);
+            root.right.right = new TreeNode(0);
+            #region extra
+            //root.left.left.left = new TreeNode(1);
+            //root.left.left.right = new TreeNode(1);
+            //root.left.right.left = new TreeNode(1);
+            //root.left.right.right = new TreeNode(1);
+
+            //root.right.left.left = new TreeNode(1);
+            //root.right.left.right = new TreeNode(1);
+            //root.right.right.left = new TreeNode(1);
+            //root.right.right.right = new TreeNode(1);
+            #endregion
+            var res = PruneIfNot1(root);
+
+
+            return root;
+        }
+        public static bool PruneIfNot1(TreeNode tree)
+        {
+            if (tree is null) return false;
+            
+            //find 1 on left
+            var isLeft1 = PruneIfNot1(tree.left);
+            //find 1 on right
+            var isRight1 = PruneIfNot1(tree.right);
+
+            if (!isLeft1)
+            {
+                tree.left = null;
+            }
+            if (!isRight1)
+            {
+                tree.right = null;
+            }
+
+            return tree.val == 1 || isLeft1 || isRight1;
+        }
+
     }
 }
