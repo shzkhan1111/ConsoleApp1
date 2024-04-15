@@ -946,5 +946,57 @@ namespace ConsoleApp1
 
             return currentClosest;
         }
+        public class TreeNode
+        {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+
+            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+            {
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
+        }
+        public static IList<int> LargestValuesInTree()
+        {
+            TreeNode root = new TreeNode(1);
+            root.left = new TreeNode(3);
+            root.right = new TreeNode(2);
+            root.left.left = new TreeNode(5);
+            root.left.right = new TreeNode(3);
+            root.right.right = new TreeNode(9);
+
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+            List<int> res = new List<int>();
+
+            if (root == null)
+            {
+                return res;
+            }
+            while (queue.Count > 0)
+            {
+                var levelCount = queue.Count();
+                int maxValue = int.MinValue;
+
+                for (int i = 0; i < levelCount;i++)
+                {
+                    var x = queue.Dequeue();
+                    maxValue = Math.Max(maxValue, x.val);
+                    if (x.left != null)
+                    {
+                        queue.Enqueue(x.left);
+                    }
+                    if (x.right != null)
+                    {
+                        queue.Enqueue(x.right);
+                    }
+                }
+                res.Add(maxValue);
+            }
+            return res;
+        }
     }
 }
