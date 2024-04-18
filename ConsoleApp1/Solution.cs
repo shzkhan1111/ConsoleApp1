@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
@@ -917,14 +918,14 @@ namespace ConsoleApp1
         {
             //brute force approach 
             int[] inputs = { 1, 8, 6, 2, 5, 4, 8, 3, 7, 9, 10, 21, 25 };
-            inputs = inputs.OrderBy(x => x).ToArray(); 
+            inputs = inputs.OrderBy(x => x).ToArray();
             int target = 1;
             //(int first, int second, int third) indexes = (0, 0, 0);
             int currentClosest = int.MaxValue;
-            
+
             for (int i = 0; i < inputs.Length - 2; i++)
             {
-                int a_p = i+1, b_p = inputs.Length - 1;
+                int a_p = i + 1, b_p = inputs.Length - 1;
                 while (a_p < b_p)
                 {
                     int currentSum = (inputs[i] + inputs[a_p] + inputs[b_p]);
@@ -936,7 +937,7 @@ namespace ConsoleApp1
                     {
                         a_p++;
                     }
-                    if (Math.Abs(currentSum - target) <Math.Abs( currentClosest - target))
+                    if (Math.Abs(currentSum - target) < Math.Abs(currentClosest - target))
                     {
                         currentClosest = currentSum;
                         //indexes = (i , a_p , b_p);
@@ -981,7 +982,7 @@ namespace ConsoleApp1
                 var levelCount = queue.Count();
                 int maxValue = int.MinValue;
 
-                for (int i = 0; i < levelCount;i++)
+                for (int i = 0; i < levelCount; i++)
                 {
                     var x = queue.Dequeue();
                     maxValue = Math.Max(maxValue, x.val);
@@ -1027,7 +1028,7 @@ namespace ConsoleApp1
         public static bool PruneIfNot1(TreeNode tree)
         {
             if (tree is null) return false;
-            
+
             //find 1 on left
             var isLeft1 = PruneIfNot1(tree.left);
             //find 1 on right
@@ -1045,5 +1046,30 @@ namespace ConsoleApp1
             return tree.val == 1 || isLeft1 || isRight1;
         }
 
+        public static ListNode swapNodes()
+        {
+            ListNode listnode = new ListNode(1);
+            listnode.next = new ListNode(2);
+            listnode.next.next = new ListNode(3);
+            listnode.next.next.next = new ListNode(4);
+            listnode.next.next.next.next = new ListNode(5);
+            listnode.next.next.next.next.next = new ListNode(6);
+
+            ListNode temp = new ListNode(0) ;
+            temp.next = listnode;
+            ListNode current = temp;
+            while (current?.next?.next != null)
+            {
+                ListNode first = current.next;
+                ListNode second = current.next.next;
+
+                first.next = second.next;
+                second.next = first;
+                current.next = second;
+                current = current.next.next;
+            }
+
+            return temp.next;
+        }
     }
 }
