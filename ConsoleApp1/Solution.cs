@@ -1055,7 +1055,7 @@ namespace ConsoleApp1
             listnode.next.next.next.next = new ListNode(5);
             listnode.next.next.next.next.next = new ListNode(6);
 
-            ListNode temp = new ListNode(0) ;
+            ListNode temp = new ListNode(0);
             temp.next = listnode;
             ListNode current = temp;
             while (current?.next?.next != null)
@@ -1071,5 +1071,82 @@ namespace ConsoleApp1
 
             return temp.next;
         }
+
+        public static TreeNode TreeNodeBottomLeft()
+        {
+            TreeNode root = new TreeNode(2);
+            root.left = new TreeNode(1);
+            root.right = new TreeNode(3);
+            root.left.left = new TreeNode(4);
+            root.right.left = new TreeNode(5);
+            root.right.left.right = new TreeNode(10);
+            root.right.left.left = new TreeNode(11);
+            root.right.right = new TreeNode(6);
+
+
+            Queue<TreeNode> qtreeNode = new Queue<TreeNode>();
+            qtreeNode.Enqueue(root);
+            TreeNode current = new TreeNode();
+            while (qtreeNode.Count > 0)
+            {
+                current = qtreeNode.Dequeue();
+                if (current.right != null)
+                {
+                    qtreeNode.Enqueue(current.right);
+                }
+                if (current.left != null)
+                {
+                    qtreeNode.Enqueue(current.left);
+                }
+            }
+            return current;
+        }
+
+        public static ListNode PartitionNodes()
+        {
+            ListNode listnode = new ListNode(1);
+            listnode.next = new ListNode(2);
+            listnode.next.next = new ListNode(3);
+            listnode.next.next.next = new ListNode(4);
+            listnode.next.next.next.next = new ListNode(5);
+            listnode.next.next.next.next.next = new ListNode(100);
+            listnode.next.next.next.next.next.next = new ListNode(13);
+            listnode.next.next.next.next.next.next.next = new ListNode(11);
+            listnode.next.next.next.next.next.next.next.next = new ListNode(15);
+            listnode.next.next.next.next.next.next.next.next.next = new ListNode(14);
+
+            ListNode before = new ListNode(0);
+            ListNode after = new ListNode(0);
+            ListNode equals = new ListNode(0);
+
+            ListNode beforePointer = before;
+            ListNode afterPointer = after;
+            ListNode equalsPointer = equals;
+            int val = 13;
+            while (listnode.next != null)
+            {
+                if (listnode.val < val)
+                {
+                    before.next = listnode;
+                    before = before.next;
+                }
+                else if (listnode.val > val)
+                {
+                    after.next = listnode;
+                    after = after.next;
+                }
+                else
+                {
+                    equals.next = listnode;
+                    equals = equals.next;
+                }
+                listnode = listnode.next;
+            }
+            equals.next = afterPointer.next;
+            before.next = equalsPointer.next;
+
+            return beforePointer.next;
+        }
+
     }
 }
