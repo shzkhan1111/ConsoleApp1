@@ -1148,5 +1148,46 @@ namespace ConsoleApp1
             return beforePointer.next;
         }
 
+        public static int RangeSumBst()
+        {
+            TreeNode root = new TreeNode(10);//
+            root.left = new TreeNode(5);
+            root.right = new TreeNode(15);//
+            root.left.left = new TreeNode(3);
+            root.left.right = new TreeNode(7);//
+            root.right.right = new TreeNode(18);
+
+
+            int low = 7;
+            int high = 15;
+            var t = RangeSumImp(root, low, high);
+            return t;
+        }
+        private static int RangeSumImp(TreeNode root, int low, int high)
+        {
+            int sum = 0;
+            if (root is null)
+            {
+                return sum;
+            }
+            if (root.val >= low && root.val <= high)
+            {
+                sum = root.val;
+            }
+
+            if (root.left != null)
+            {
+                sum = (sum + RangeSumImp(root.left, low, high));
+            }
+
+            if (root.right != null)
+            {
+                sum = (sum + RangeSumImp(root.right, low, high));
+            }
+
+            return sum;
+
+        }
+
     }
 }

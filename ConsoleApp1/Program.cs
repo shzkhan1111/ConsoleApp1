@@ -62,7 +62,7 @@ namespace ConsoleApp1
             //{
             //    Console.Write("No");
             //}
-            var s = Solution.PartitionNodes();
+            var s = Solution.RangeSumBst();
             //var Ss = Solution.BinarySearch(numbers , 8);
 
 
