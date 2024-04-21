@@ -62,7 +62,7 @@ namespace ConsoleApp1
             //{
             //    Console.Write("No");
             //}
-            Solution.flatten_Tree();
+            Solution.rightSide_Tree();
             //var s = Solution.flatten_Tree();
             //if (s)
             //{

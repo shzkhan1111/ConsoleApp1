@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Transactions;
 using static ConsoleApp1.Program;
 
 namespace ConsoleApp1
@@ -1389,6 +1390,46 @@ namespace ConsoleApp1
 
             }
 
+        }
+
+        public static List<int> rightSide_Tree()
+        {
+            TreeNode root = new TreeNode(1);
+            root.left = new TreeNode(3);
+            root.right = new TreeNode(2);
+            root.left.left = new TreeNode(5);
+            root.left.right = new TreeNode(3);
+            root.right.right = new TreeNode(9);
+
+            List<int> result = new List<int>();
+            Queue<TreeNode> q = new Queue<TreeNode>();
+            if (root is null)
+            {
+                return result;
+            }
+            q.Enqueue(root);
+            while (q.Count > 0)
+            {
+                int size = q.Count;
+                for (int i = 0; i < size;i++)
+                {
+                    var current = q.Dequeue();
+                    if (i == 0)
+                    {
+                        result.Add(current.val);
+                    }
+                    if (current.right != null)
+                    {
+                        q.Enqueue(current.right);
+                    }
+                    if (current.left != null)
+                    {
+                        q.Enqueue(current.left);
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }
