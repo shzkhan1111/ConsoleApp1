@@ -1268,6 +1268,9 @@ namespace ConsoleApp1
             root.left.right = new TreeNode(5);
             //root.right.right = new TreeNode(6);
             root.right.left= new TreeNode(6);
+            root.right.left.left= new TreeNode(6);
+            root.right.left.left.right= new TreeNode(6);
+            root.right.left.left.right.left= new TreeNode(6);
             Queue<TreeNode> queue = new Queue<TreeNode>();
             if (root == null)
             {
@@ -1300,5 +1303,58 @@ namespace ConsoleApp1
             return true;
         }
         
+        public static int widthOftree()
+        {
+            TreeNode root = new TreeNode(1);
+            root.left = new TreeNode(3);
+            root.right = new TreeNode(2);
+            root.left.left = new TreeNode(5);
+            root.left.right = new TreeNode(3);
+            root.right.right = new TreeNode(9);
+
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            Queue<int> indexes = new Queue<int>();
+            if (root == null)
+            {
+                return 0;
+            }
+            queue.Enqueue(root);
+            indexes.Enqueue(1);
+            //Algo 
+            /*
+             * get the current element in the queue 
+             * with its index value 
+             * get the current size of the q and by that add new elemnt in the q 
+             * get the last index with the width of the left - right 
+             * check if this width at the current level is the max if so than 
+             * update max
+             */
+            int max = -1;
+            while (queue.Count > 0)
+            {
+                int size = queue.Count;
+                int leftIndex = indexes.Peek();
+                int rightIndex = leftIndex;
+                
+                for (int i = 0; i< size; i++)
+                {
+                    TreeNode current = queue.Dequeue();
+                    int index = indexes.Dequeue();
+                    rightIndex = index;
+                    if (current.left != null)
+                    {
+                        queue.Enqueue(current.left);
+                        indexes.Enqueue(index * 2);
+                    }
+                    if (current.right != null)
+                    {
+                        queue.Enqueue(current.right);
+                        indexes.Enqueue((index * 2) + 1);
+                    }
+                }
+                max = Math.Max(max , rightIndex - leftIndex + 1);
+            }
+            return max;
+        }
     }
 }

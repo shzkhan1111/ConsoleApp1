@@ -62,15 +62,15 @@ namespace ConsoleApp1
             //{
             //    Console.Write("No");
             //}
-            var s = Solution.completeBinTree();
-            if (s)
-            {
-                Console.WriteLine("Perfect");
-            }
-            else
-            {
-                Console.WriteLine("Not Perfect");
-            }
+            var s = Solution.withOftree();
+            //if (s)
+            //{
+            //    Console.WriteLine("Perfect");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Not Perfect");
+            //}
             //var Ss = Solution.BinarySearch(numbers , 8);
 
 
