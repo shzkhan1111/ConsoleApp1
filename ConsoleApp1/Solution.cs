@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using static ConsoleApp1.Program;
 
@@ -1189,5 +1190,115 @@ namespace ConsoleApp1
 
         }
 
+        public static bool isUniTree()
+        {
+            TreeNode root = new TreeNode(10);//
+            root.left = new TreeNode(10);
+            root.right = new TreeNode(10);//
+            root.left.left = new TreeNode(10);
+            root.left.right = new TreeNode(8);//
+            root.right.right = new TreeNode(10);
+
+            if (root is null)
+            {
+                return true;
+            }
+            var t = iniTreeImp(root, root.val);
+            return t;
+        }
+        private static bool iniTreeImp(TreeNode tree, int val)
+        {
+            bool ans = true;
+            if (tree.val != val)
+            {
+                ans = false;
+            }
+            if (tree.left != null)
+            {
+                ans = ans && iniTreeImp(tree.left, val);
+            }
+            if (tree.right != null)
+            {
+                ans = ans && iniTreeImp(tree.right, val);
+            }
+            return ans;
+        }
+
+        //sum of abs value - 1 
+        public static int numberofMoves = 0;
+        public static int DistributeCoins()
+        {
+            TreeNode root = new TreeNode(0);//
+            root.left = new TreeNode(5);
+            root.right = new TreeNode(15);//
+            root.left.left = new TreeNode(3);
+            root.left.right = new TreeNode(7);//
+            root.right.right = new TreeNode(18);
+            int res = DisTriConImp(root);
+            return res;
+
+        }
+
+        private static int DisTriConImp(TreeNode root)
+        {
+            //go down to the bottom node get the value and -1 and add it to the sum
+            if (root is null)
+            {
+                return 0;
+            }
+            int leftSum = DisTriConImp(root.left);
+            int rightSum = DisTriConImp(root.right);
+            numberofMoves += Math.Abs(leftSum) + Math.Abs(rightSum);
+            return root.val + leftSum + rightSum - 1;
+        }
+
+
+
+        //complete Binary tree 
+        //every level exept the last is completly filled 
+        //all nodes left as possible left filled right may remain empty 
+
+
+        public static bool completeBinTree()
+        {
+            TreeNode root = new TreeNode(1);
+            root.left = new TreeNode(2);
+            root.right = new TreeNode(3);
+            root.left.left = new TreeNode(4);
+            root.left.right = new TreeNode(5);
+            //root.right.right = new TreeNode(6);
+            root.right.left= new TreeNode(6);
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            if (root == null)
+            {
+                return true;
+            }
+            queue.Enqueue(root);
+            bool nullSeen = false;
+            while (queue.Count > 0)
+            {
+                var current = queue.Dequeue();
+                if (current == null)
+                {
+                    nullSeen = true;
+                }
+                else
+                {
+                    if (nullSeen)
+                    {
+                        return false;
+                    }
+                }
+
+                if (current != null)
+                {
+                    queue.Enqueue(current.left);
+                    queue.Enqueue(current.right);
+                }
+            }
+
+            return true;
+        }
+        
     }
 }
