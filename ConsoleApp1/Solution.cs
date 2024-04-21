@@ -1267,10 +1267,10 @@ namespace ConsoleApp1
             root.left.left = new TreeNode(4);
             root.left.right = new TreeNode(5);
             //root.right.right = new TreeNode(6);
-            root.right.left= new TreeNode(6);
-            root.right.left.left= new TreeNode(6);
-            root.right.left.left.right= new TreeNode(6);
-            root.right.left.left.right.left= new TreeNode(6);
+            root.right.left = new TreeNode(6);
+            root.right.left.left = new TreeNode(6);
+            root.right.left.left.right = new TreeNode(6);
+            root.right.left.left.right.left = new TreeNode(6);
             Queue<TreeNode> queue = new Queue<TreeNode>();
             if (root == null)
             {
@@ -1302,7 +1302,7 @@ namespace ConsoleApp1
 
             return true;
         }
-        
+
         public static int widthOftree()
         {
             TreeNode root = new TreeNode(1);
@@ -1335,8 +1335,8 @@ namespace ConsoleApp1
                 int size = queue.Count;
                 int leftIndex = indexes.Peek();
                 int rightIndex = leftIndex;
-                
-                for (int i = 0; i< size; i++)
+
+                for (int i = 0; i < size; i++)
                 {
                     TreeNode current = queue.Dequeue();
                     int index = indexes.Dequeue();
@@ -1352,9 +1352,43 @@ namespace ConsoleApp1
                         indexes.Enqueue((index * 2) + 1);
                     }
                 }
-                max = Math.Max(max , rightIndex - leftIndex + 1);
+                max = Math.Max(max, rightIndex - leftIndex + 1);
             }
             return max;
+        }
+
+        public static void flatten_Tree()
+        {
+            TreeNode root = new TreeNode(1);
+            root.left = new TreeNode(3);
+            root.right = new TreeNode(2);
+            root.left.left = new TreeNode(5);
+            root.left.right = new TreeNode(3);
+            root.right.right = new TreeNode(9);
+
+            if (root is null)
+            {
+                return;
+            }
+            Stack<TreeNode> s = new Stack<TreeNode>();
+            s.Push(root);
+            while (s.Count > 0)
+            {
+                var current = s.Pop();
+                if (current.right != null)
+                {
+                    s.Push(current.right);
+                }
+                if (current.left != null)
+                {
+                    s.Push(current.left);
+                }
+                current.left = null;
+                if (s.Count > 0)
+                    current.right = s.Peek();
+
+            }
+
         }
     }
 }

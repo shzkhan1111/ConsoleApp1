@@ -62,7 +62,8 @@ namespace ConsoleApp1
             //{
             //    Console.Write("No");
             //}
-            var s = Solution.withOftree();
+            Solution.flatten_Tree();
+            //var s = Solution.flatten_Tree();
             //if (s)
             //{
             //    Console.WriteLine("Perfect");
