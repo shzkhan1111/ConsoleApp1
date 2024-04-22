@@ -1431,5 +1431,39 @@ namespace ConsoleApp1
 
             return result;
         }
+
+        public static int numOfStonesAndJewels1()
+        {
+            string jewels = "aA";
+            string stones = "aAAbbbb";
+
+            var x = jewels.ToCharArray().Intersect(stones.ToCharArray());
+            int abs = x.Count();
+            return abs;
+        }
+
+        public static int numOfStonesAndJewels()
+        {
+            string jewels = "aA";
+            string stones = "aAAbbbb";
+            HashSet<char> jewelSet = new HashSet<char>();
+
+            foreach (var j in stones)
+            {
+                jewelSet.Add(j);
+            }
+            int c = 0;
+            foreach (var s in jewels)
+            {
+                if (jewelSet.Contains(s))
+                {
+                    c++;
+                }
+            }
+
+            return c;
+        }
+
+
     }
 }
