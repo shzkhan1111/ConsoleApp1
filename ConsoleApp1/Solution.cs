@@ -1411,7 +1411,7 @@ namespace ConsoleApp1
             while (q.Count > 0)
             {
                 int size = q.Count;
-                for (int i = 0; i < size;i++)
+                for (int i = 0; i < size; i++)
                 {
                     var current = q.Dequeue();
                     if (i == 0)
@@ -1464,6 +1464,79 @@ namespace ConsoleApp1
             return c;
         }
 
+        public static ListNode SortNodes()
+        {
+            ListNode listnode = new ListNode(100);
+            listnode.next = new ListNode(2);
+            listnode.next.next = new ListNode(3);
+            listnode.next.next.next = new ListNode(205);
+            //listnode.next.next.next.next = new ListNode(5);
+            //listnode.next.next.next.next.next = new ListNode(99);
+            //listnode.next.next.next.next.next.next = new ListNode(13);
+            //listnode.next.next.next.next.next.next.next = new ListNode(11);
+            //listnode.next.next.next.next.next.next.next.next = new ListNode(15);
+            //listnode.next.next.next.next.next.next.next.next.next = new ListNode(14);
+            listnode = SplitNodes(listnode);
 
+
+
+            return listnode;
+        }
+        private static ListNode SplitNodes(ListNode listnode)
+        {
+            if (listnode?.next == null)
+            {
+                return listnode;
+            }
+            ListNode slow = listnode;
+            ListNode fast = listnode;
+            ListNode temp = listnode;
+
+            while (fast?.next != null)
+            {
+                fast = fast.next.next;
+                temp = slow;
+                slow = slow.next;
+            }
+            temp.next = null;
+            ListNode left = SplitNodes(listnode);
+            ListNode right = SplitNodes(slow);
+            var vxd = MergeListNode(left, right);
+            return vxd;
+        }
+
+        private static ListNode MergeListNode(ListNode left, ListNode right)
+        {
+            ListNode tempNode = new ListNode(0);
+            ListNode current = tempNode;
+            while (left != null && right != null)
+            {
+                if (left.val < right.val)
+                {
+                    current.next = left;
+                    left = left.next;
+                }
+                else
+                {
+                    current.next = right;
+                    right = right.next;
+                }
+                current = current.next;
+            }
+            while (left != null)
+            {
+                current.next = left;
+                left = left.next;
+                current = current.next;
+            }
+            while (right != null)
+            {
+                current.next = right;
+                right = right.next;
+                current = current.next;
+            }
+
+            return tempNode.next;   
+        }
     }
 }
