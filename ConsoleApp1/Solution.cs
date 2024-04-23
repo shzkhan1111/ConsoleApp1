@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
@@ -1536,7 +1537,51 @@ namespace ConsoleApp1
                 current = current.next;
             }
 
-            return tempNode.next;   
+            return tempNode.next;
+        }
+
+        public static bool searchBinary_Tree()
+        {
+            TreeNode root = new TreeNode(1);
+            root.left = new TreeNode(2);
+            root.right = new TreeNode(3);
+            root.left.left = new TreeNode(4);
+            root.left.right = new TreeNode(5);
+            //root.right.right = new TreeNode(6);
+            root.right.left = new TreeNode(32);
+            root.right.left.left = new TreeNode(11);
+            root.right.left.left.right = new TreeNode(41);
+            root.right.left.left.right.left = new TreeNode(90);
+
+            int number = 41;
+            var x = searchBinary_TreeImp(root, number);
+            return !(x is null);
+
+        }
+        private static TreeNode searchBinary_TreeImp(TreeNode treeNode, int number)
+        {
+            if (treeNode is null)
+            {
+                return null;
+            }
+            if (treeNode.val == number)
+            {
+                return treeNode;
+            }
+            var left = searchBinary_TreeImp(treeNode.left, number);
+            if (left != null)
+            {
+                return left;
+            }
+            var right = searchBinary_TreeImp(treeNode.right, number);
+            if (right != null)
+            {
+                return right;
+            }
+
+            return null;
+
         }
     }
+
 }
