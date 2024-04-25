@@ -1582,6 +1582,31 @@ namespace ConsoleApp1
             return null;
 
         }
+
+
+        public static int PeakIndexInMountainArray()
+        {
+            int[] arr = { 0 , 2, 5, 10,1  ,0};
+            int le = 0; int ri = arr.Count() - 1;
+            int mid = le + ((ri - le) / 2);
+
+            while (le < ri)
+            {
+                if (arr[mid] < arr[mid - 1])
+                {
+                    ri = mid;
+                }
+                else
+                {
+                    le = mid + 1;
+                }
+
+                mid = le + ((ri - le) / 2);
+            }
+
+            return le;
+
+        }
     }
 
 }

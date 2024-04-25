@@ -20,12 +20,12 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-            char[][] grid = new char[][] {
-            new char[] { '1', '1', '1', '0', '0' },
-            new char[] { '1', '1', '0', '1', '0' },
-            new char[] { '1', '1', '0', '0', '0' },
-            new char[] { '0', '0', '1', '0', '1' }
-        };
+            //    char[][] grid = new char[][] {
+            //    new char[] { '1', '1', '1', '0', '0' },
+            //    new char[] { '1', '1', '0', '1', '0' },
+            //    new char[] { '1', '1', '0', '0', '0' },
+            //    new char[] { '0', '0', '1', '0', '1' }
+            //};
 
             //var wxs = Solution.NumIslands(grid);
             //Console.WriteLine(wxs);
@@ -62,7 +62,6 @@ namespace ConsoleApp1
             //{
             //    Console.Write("No");
             //}
-            Solution.searchBinary_Tree();
             //var s = Solution.flatten_Tree();
             //if (s)
             //{
@@ -73,6 +72,7 @@ namespace ConsoleApp1
             //    Console.WriteLine("Not Perfect");
             //}
             //var Ss = Solution.BinarySearch(numbers , 8);
+            Solution.PeakIndexInMountainArray();
 
 
         }
