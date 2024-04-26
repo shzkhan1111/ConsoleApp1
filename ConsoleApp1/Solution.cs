@@ -1685,7 +1685,7 @@ namespace ConsoleApp1
         }
 
 
-        public static string reverseCharOnlyString()
+        public static string reverseCharOnlyStringV1()
         {
             string r = "a-bc-def-ghij";
             Stack<char> schars = new Stack<char>();
@@ -1710,6 +1710,32 @@ namespace ConsoleApp1
             }
             string output = res.ToString();
             return output;
+        }
+
+        public static string reverseCharOnlyString()
+        {
+            string r = "a-bc-def-ghij";
+            StringBuilder sb = new StringBuilder();
+            int j = r.Length - 1;
+
+            for (int i = 0; i < r.Length; i++)
+            {
+                if (char.IsLetter(r[i]))
+                {
+                    while (!char.IsLetter(r[j]))
+                    {
+                        j--;
+                    }
+                    sb.Append(r[j]);
+                    j--;
+                }
+                else
+                {
+                    sb.Append(r[i]);
+                }
+            }
+            var rrr = sb.ToString();
+            return rrr;
         }
 
     }
