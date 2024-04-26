@@ -1586,7 +1586,7 @@ namespace ConsoleApp1
 
         public static int PeakIndexInMountainArray()
         {
-            int[] arr = { 0 , 2, 5, 10,1  ,0};
+            int[] arr = { 0, 2, 5, 10, 1, 0 };
             int le = 0; int ri = arr.Count() - 1;
             int mid = le + ((ri - le) / 2);
 
@@ -1607,6 +1607,111 @@ namespace ConsoleApp1
             return le;
 
         }
+
+        public static int sumOfLeftNodesDfs()
+        {
+
+            TreeNode root = new TreeNode(3);
+            root.left = new TreeNode(9);
+            root.right = new TreeNode(20);
+            root.right.left = new TreeNode(15);
+            root.right.right = new TreeNode(7);
+            var x = sumOfLeftNodesDfsImpStack(root);
+
+            return x;
+
+        }
+        private static int sumOfLeftNodesDfsImp(TreeNode root)
+        {
+            int sumOfLeftNodes = 0;
+            if (root is null)
+            {
+                return 0;
+            }
+            if (root.left != null)
+            {
+                if (root.left.left is null && root.left.right is null)
+                    sumOfLeftNodes += root.left.val;
+                else
+                    sumOfLeftNodes += sumOfLeftNodesDfsImp(root.left);
+
+            }
+            if(root.right != null)
+            {
+                //this is not a leaf but a tree branch
+                if (root.right.left != null || root.right.right != null)
+                    sumOfLeftNodes += sumOfLeftNodesDfsImp(root.right);
+            }
+
+            return sumOfLeftNodes;
+
+        }
+
+        private static int sumOfLeftNodesDfsImpStack(TreeNode node)
+        {
+            if (node is null)
+            {
+                return 0;
+            }
+
+            int sum = 0;
+            Stack<TreeNode> stackTree = new Stack<TreeNode>();
+            stackTree.Push(node);
+            while (stackTree.Count > 0)
+            {
+                TreeNode root = stackTree.Pop();
+                if (root.left != null)
+                {
+                    if (root.left.left is null && root.left.right is null)
+                    {
+                        sum += root.left.val;
+                    }
+                    else
+                    {
+                        stackTree.Push(root.left);
+                    }
+                }
+                if (root.right != null)
+                {
+                    if (root.right.left != null && root.right.right != null)
+                    {
+                        stackTree.Push(root.right);
+                    }
+                }
+            }
+
+            return sum;
+            
+        }
+
+
+        public static string reverseCharOnlyString()
+        {
+            string r = "a-bc-def-ghij";
+            Stack<char> schars = new Stack<char>();
+            for (int i = 0; i < r.Length; i++)
+            {
+                if (char.IsLetter(r[i]))
+                {
+                    schars.Push(r[i]);
+                }
+            }
+            StringBuilder res = new StringBuilder();
+            for (int i = 0; i < r.Length; i++)
+            {
+                if (!char.IsLetter(r[i]))
+                {
+                    res.Append(r[i]);
+                }
+                else
+                {
+                    res.Append(schars.Pop());
+                }
+            }
+            string output = res.ToString();
+            return output;
+        }
+
     }
 
 }
