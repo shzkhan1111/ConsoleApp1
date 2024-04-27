@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design.Serialization;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -1864,8 +1865,137 @@ namespace ConsoleApp1
             }
             return uniqueEmail.Count();
         }
+        public static int MorseCode()
+        {
+            string[] morseCodes = {
+            ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---",
+            "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-",
+            "..-", "...-", ".--", "-..-", "-.--", "--.."
+        };
+            string[] words = { "gin", "zen", "gig", "msg" };
+            
+            HashSet<string> uniqueWords = new HashSet<string>();
+            foreach (var w in words)
+            {
+                StringBuilder temp = new StringBuilder();
+                foreach (var c in w)
+                {
+                    int index = c - 'a';
+                    temp.Append(morseCodes[index]);
+                }
+                uniqueWords.Add(temp.ToString());
+            }
+            return uniqueWords.Count;
 
+        }
 
+        public static int[] sortArrayByParityV1()
+        {
+            int[] A = { 3, 1, 2, 4 ,7,8};
+
+            int[] B = new int[A.Length];
+
+            for (int i = 0, j = A.Length - 1, k = 0; i < A.Length; i++)
+            {
+                if (A[i] % 2 == 0)
+                {
+                    B[k] = A[i];
+                    k++;
+                }
+                else
+                {
+                    B[j] = A[i];
+                    j--;
+                }
+            }
+            return B;
+
+        }
+
+        public static int[] sortArrayByParity()
+        {
+            int[] A = { 3, 1, 2, 4, 7, 8 };
+            //2 pointer
+            int left = 0; int right = A.Length - 1;
+            while (left < right)
+            {
+                //odd even
+                if (A[left] % 2 > A[right] % 2)
+                {
+                    //swap
+                    int temp = A[left];
+                    A[left] = A[right];
+                    A[right] = temp;
+                }
+                if (A[left] % 2 == 0)
+                {
+                    left++;
+                }
+                if (A[right] % 2 != 0)
+                {
+                    right--;
+                }
+            }
+            
+             
+            
+            return A;
+
+        }
+
+        //single num with no extra space 
+        /// <summary>
+        /// number appear 2 times except 1 number 
+        /// find that number 
+        /// </summary>
+        /// <returns>
+        /// element xor with 0 element 
+        /// element xor element = 0
+        /// </returns>
+        public static int singleNumberNoExtraSpace()
+        {
+            int[] A = { 4,2,1,1,2};
+            int res = 0;
+            foreach (int a in A)
+            {
+                res ^= a;
+            }
+            return res;
+        }
+
+        public static List<int> selfDividingNumber()
+        {
+            List<int> A = new List<int>();
+            int left = 1, right = 22;
+            List<int> res = new List<int>();
+            for(int i = left; i<= right; i++)
+            {
+                if (selfDividing(i))
+                {
+                    res.Add(i);
+                }
+            }
+            return res;
+
+        }
+        private static bool selfDividing(int num)
+        {
+            int temp = num;
+            while (temp > 0)
+            {
+                int rem = temp % 10;
+                if (rem != 0)
+                {
+                    if (num % rem != 0)
+                    {
+                        return false;
+                    }
+                }
+                
+                temp /= 10;
+            }
+            return true;
+        }
 
     }
 
