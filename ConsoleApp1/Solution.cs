@@ -1636,7 +1636,7 @@ namespace ConsoleApp1
                     sumOfLeftNodes += sumOfLeftNodesDfsImp(root.left);
 
             }
-            if(root.right != null)
+            if (root.right != null)
             {
                 //this is not a leaf but a tree branch
                 if (root.right.left != null || root.right.right != null)
@@ -1681,7 +1681,7 @@ namespace ConsoleApp1
             }
 
             return sum;
-            
+
         }
 
 
@@ -1737,6 +1737,135 @@ namespace ConsoleApp1
             var rrr = sb.ToString();
             return rrr;
         }
+
+        public static List<int> SprialMatrixesV1()
+        {
+            List<int> res = new List<int>();
+
+            int[][] matrix = new int[][] {
+            new int[] { 1, 2, 3, 4, 5 },
+            new int[] { 6, 7, 8, 9, 10 },
+            new int[] { 11, 12, 13, 14, 15 },
+            new int[] { 16, 17, 18, 19, 20 }
+            //new int[] { 21, 22, 23, 24, 25 }
+        };
+            int start_row = 0, end_row = matrix.Length - 1;
+            int start_col = 0, end_col = matrix[0].Length - 1;
+
+            while (start_row <= end_row && start_col <= end_col)
+            {
+                for (int i = start_col; i <= end_col; i++)
+                {
+                    res.Add(matrix[start_row][i]);
+                }
+                start_row++;
+                for (int i = start_row; i <= end_row; i++)
+                {
+                    res.Add(matrix[i][end_col]);
+                }
+                end_col--;
+
+                for (int i = end_col; i >= start_col; i--)
+                {
+                    res.Add(matrix[end_row][i]);
+                }
+                end_row--;
+
+
+                for (int i = end_row; i >= start_row; i--)
+                {
+                    res.Add(matrix[i][start_col]);
+                }
+                start_col++;
+            }
+            return res;
+
+        }
+
+        public static int[][] SprialMatrixes()
+        {
+
+            int[][] matrix = new int[][] {
+            new int[] { 1, 2, 3, 4, 5 },
+            new int[] { 6, 7, 8, 9, 10 },
+            new int[] { 11, 12, 13, 14, 15 },
+            new int[] { 16, 17, 18, 19, 20 }
+            //new int[] { 21, 22, 23, 24, 25 }
+        };
+            int l = matrix[0].Length;
+            int[][] res = new int[matrix.Length][];
+
+            for (int i = 0; i < res.Length; i++)
+            {
+                res[i] = new int[matrix[i].Length];
+            }
+            int count = 1;
+            int row_start = 0, row_end = matrix.Length - 1, col_start = 0, col_end = matrix[0].Length - 1;
+
+            while (row_start <= row_end && col_start <= col_end)
+            {
+                for (int i = col_start; i <= col_end; i++)
+                {
+                    res[row_start][i] = count++;
+                }
+                row_start++;
+
+                for (int i = row_start; i <= row_end; i++)
+                {
+                    res[i][col_end] = count++;
+                }   
+                col_end--;
+
+                for (int i = col_end; i >= col_start; i--)
+                {
+                    res[row_end][i] = count++;
+                }
+                row_end--;
+
+                for (int i = row_end; i >= row_start; i--)
+                {
+                    res[i][col_start] = count++;
+                }
+                col_start++;
+
+
+            }
+            for (int i = 0;i < res.Length;i++)
+            {
+                for (int j = 0; j < res[i].Length; j++)
+                {
+                    Console.Write($"{res[i][j]}, ");
+                }
+                Console.WriteLine();
+            }
+            return res;
+        }
+
+        public static int numOfUniqueEmails()
+        {
+            string[] emails = {
+            "test.email+alex@leetcode.com",
+            "test.e.mail+bob.cathy@leetcode.com",
+            "testemail+david@lee.tcode.com",
+            "zahid@kjk.euidheuid.com"
+        };
+
+            HashSet<string> uniqueEmail = new HashSet<string>();
+            foreach (var e in emails)
+            {
+                string domain = e.Split("@")[0];
+                string host = e.Split("@")[1];
+
+                if (domain.Contains("+"))
+                    domain = domain.Split("+")[0];
+
+                string final = (domain + host).Replace(".", "");
+                uniqueEmail.Add(final);
+            }
+            return uniqueEmail.Count();
+        }
+
+
 
     }
 
