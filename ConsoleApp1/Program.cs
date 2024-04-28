@@ -72,7 +72,13 @@ namespace ConsoleApp1
             //    Console.WriteLine("Not Perfect");
             //}
             //var Ss = Solution.BinarySearch(numbers , 8);
-            Solution.selfDividingNumber();
+            //Solution.CommonChars();
+            Class1 c = new Class1();
+            int[] arr = new int[] { 1, 1000, 3001, 3002 };
+            foreach(int a in arr)
+            {
+                c.Ping(a);
+            }
 
 
         }

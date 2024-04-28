@@ -1814,7 +1814,7 @@ namespace ConsoleApp1
                 for (int i = row_start; i <= row_end; i++)
                 {
                     res[i][col_end] = count++;
-                }   
+                }
                 col_end--;
 
                 for (int i = col_end; i >= col_start; i--)
@@ -1831,7 +1831,7 @@ namespace ConsoleApp1
 
 
             }
-            for (int i = 0;i < res.Length;i++)
+            for (int i = 0; i < res.Length; i++)
             {
                 for (int j = 0; j < res[i].Length; j++)
                 {
@@ -1873,7 +1873,7 @@ namespace ConsoleApp1
             "..-", "...-", ".--", "-..-", "-.--", "--.."
         };
             string[] words = { "gin", "zen", "gig", "msg" };
-            
+
             HashSet<string> uniqueWords = new HashSet<string>();
             foreach (var w in words)
             {
@@ -1891,7 +1891,7 @@ namespace ConsoleApp1
 
         public static int[] sortArrayByParityV1()
         {
-            int[] A = { 3, 1, 2, 4 ,7,8};
+            int[] A = { 3, 1, 2, 4, 7, 8 };
 
             int[] B = new int[A.Length];
 
@@ -1936,9 +1936,9 @@ namespace ConsoleApp1
                     right--;
                 }
             }
-            
-             
-            
+
+
+
             return A;
 
         }
@@ -1954,7 +1954,7 @@ namespace ConsoleApp1
         /// </returns>
         public static int singleNumberNoExtraSpace()
         {
-            int[] A = { 4,2,1,1,2};
+            int[] A = { 4, 2, 1, 1, 2 };
             int res = 0;
             foreach (int a in A)
             {
@@ -1968,7 +1968,7 @@ namespace ConsoleApp1
             List<int> A = new List<int>();
             int left = 1, right = 22;
             List<int> res = new List<int>();
-            for(int i = left; i<= right; i++)
+            for (int i = left; i <= right; i++)
             {
                 if (selfDividing(i))
                 {
@@ -1991,12 +1991,61 @@ namespace ConsoleApp1
                         return false;
                     }
                 }
-                
+
                 temp /= 10;
             }
             return true;
         }
+        public static int PairSumArray()
+        {
+            int[] nums = { 4, 2, 1, 1, 2 };
+            Array.Sort(nums);
+            int sum = 0;
+            for (int i = 0; i < nums.Length; i += 2)
+            {
+                sum += nums[i];
+            }
 
+            return sum;
+
+        }
+
+        public static IList<string> CommonChars()
+        {
+            string[] A = { "bella", "label", "roller" };
+            int[] finalFreqLetter = new int[26];
+            Array.Fill(finalFreqLetter, int.MaxValue);
+            foreach (string a in A)
+            {
+                int[] tempFreq = new int[26];
+                foreach (char x in a)
+                {
+                    int index = x - 'a';
+                    tempFreq[index]++;
+                }
+
+                //update freq of main array
+                for (int i = 0; i < 26; i++)
+                {
+                    finalFreqLetter[i] = Math.Min(finalFreqLetter[i], tempFreq[i]);
+                }
+            }
+
+            List<string> finalout = new List<string>();
+            for (int i = 0; i < 26; i ++)
+            {
+                while (finalFreqLetter[i]-- > 0)
+                {
+                    char x = (char)('a' + i);
+                    finalout.Add(x.ToString());
+                }
+            }
+
+            return finalout;
+        }
     }
-
 }
+
+
+
+
