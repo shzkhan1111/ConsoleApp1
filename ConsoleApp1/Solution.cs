@@ -2032,7 +2032,7 @@ namespace ConsoleApp1
             }
 
             List<string> finalout = new List<string>();
-            for (int i = 0; i < 26; i ++)
+            for (int i = 0; i < 26; i++)
             {
                 while (finalFreqLetter[i]-- > 0)
                 {
@@ -2043,6 +2043,153 @@ namespace ConsoleApp1
 
             return finalout;
         }
+
+
+        public static int[] SumEvenAfterQueries()
+        {
+            // Test input array
+
+            int[] A = { 1, 2, 3, 4 };
+            // Test queries
+            int[][] queries = {
+            new int[] {1, 0},
+            new int[] {-3, 1},
+            new int[] {-4, 0},
+            new int[] {2, 3}
+        };
+            int[] res = new int[queries.Length];
+            int sum = 0;
+            //int i = 0;
+            foreach (var a in A)
+            {
+                if (a % 2 == 0)
+                {
+                    sum += a;
+                }
+            }
+            int i = 0;
+            foreach (var q in queries)
+            {
+                int val = q[0];
+                int index = q[1];
+                if (A[index] % 2 == 0)
+                {
+                    sum -= A[index];
+                }
+                A[index] += val;
+                if (A[index] % 2 == 0)
+                {
+                    sum += A[index];
+                }
+                res[i++] = sum;
+            }
+
+            return res;
+
+        }
+
+        public static int[] sortArrayByParity2V1()
+        {
+            int[] A = { 4, 2, 5, 7, 8, 9 };
+            int[] res = new int[A.Length];
+            int evenIndex = 0;
+            int oddIndex = 1;
+            foreach (int a in A)
+            {
+                if (a % 2 == 0)
+                {
+                    res[evenIndex] = a;
+                    evenIndex += 2;
+                }
+                else
+                {
+                    res[oddIndex] = a;
+                    oddIndex += 2;
+                }
+            }
+
+            return res;
+        }
+
+        public static int[] sortArrayByParity2()
+        {
+            int[] A = { 4, 2, 5, 7, 8, 9 };
+            int length = A.Length;
+            int evenIndex = 0, oddindex = 1;
+            while (evenIndex < length && oddindex < length)
+            {
+                while (evenIndex < length && A[evenIndex] % 2 == 0)
+                {
+                    evenIndex += 2;
+                }
+                while (oddindex < length && A[oddindex] % 2 != 0)
+                {
+                    oddindex += 2;
+                }
+                //first out of place 
+                if (evenIndex < length && oddindex < length)
+                {
+                    int t = A[evenIndex];
+                    A[evenIndex] = A[oddindex];
+                    A[oddindex] = t;
+                }
+
+            }
+
+            return A;
+        }
+
+
+        public static int[,] TransposeMatrixV1()
+        {
+            int[,] matrix = new int[,] {
+            {1, 2, 3},
+             {4, 5, 6},
+             {7, 8, 9},
+            {10, 11, 12},
+        };
+
+            int row = matrix.GetLength(0);
+            int col = matrix.GetLength(1);
+
+            int[,] res = new int[col,row];
+            for(int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    res[j,i] = matrix[i,j];
+                }
+            }
+            return res;
+
+        }
+        public static int[][] TransposeMatrix()
+        {
+            int[][] matrix = new int[][] {
+            new int[]{1, 2, 3},
+             new int[]{4, 5, 6},
+             new int[]{7, 8, 9},
+            new int[]{10, 11, 12},
+        };
+
+            int row = matrix.Length;
+            int col = matrix[0].Length;
+
+            //int[,] res = new int[col, row];
+            int[][] res = new int[col][];
+            for (int i = 0; i < col; i++)
+            {
+                res[i] = new int[row];
+                for (int j = 0; j < row; j++)
+                {
+                    res[i][j] = matrix[j][i];
+                }
+            }
+            return res;
+
+        }
+
+
     }
 }
 
