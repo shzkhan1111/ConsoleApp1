@@ -2308,7 +2308,7 @@ namespace ConsoleApp1
                 }
             }
 
-            return dis;
+            return dis != int.MaxValue ? dis : 0;
 
         }
 
