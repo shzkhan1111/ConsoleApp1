@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
+using System.Xml.Serialization;
 using static ConsoleApp1.Program;
 
 namespace ConsoleApp1
@@ -2189,6 +2190,75 @@ namespace ConsoleApp1
 
         }
 
+        public static ListNode AddTwoNumbers()
+        {
+            ListNode l1 = new ListNode(9);
+            l1.next = new ListNode(9);
+            l1.next.next = new ListNode(9);
+
+            ListNode l2 = new ListNode(9);
+            l2.next = new ListNode(9);
+            l2.next.next = new ListNode(9);
+
+            ListNode answer = new ListNode(0);
+            ListNode l1Pointer = l1;
+            ListNode l2Pointer = l2;
+            ListNode answerPointer = answer;
+            int carry = 0;
+            while (l1Pointer != null || l2Pointer != null)
+            {
+                int sum = 0;
+                if (l1Pointer is null)  
+                {
+                    sum = l2Pointer.val + carry;
+                    l2Pointer = l2Pointer.next;
+                }
+                else if (l2Pointer is null)
+                {
+                    sum = l1Pointer.val + carry;
+                    l1Pointer = l1Pointer.next;
+                }
+                else
+                {
+                    sum = l1Pointer.val + l2Pointer.val + carry;
+                    carry = sum / 10;
+                    sum = sum % 10;
+                    l1Pointer = l1Pointer.next;
+                    l2Pointer = l2Pointer.next;
+                }
+                answer.next = new ListNode(sum);
+                answer = answer.next;
+
+            }
+            if (carry > 0)
+            {
+                answer.next = new ListNode(carry);
+                answer = answer.next;
+            }
+            answerPointer = answerPointer.next;
+
+            return answerPointer;
+        }
+
+        public static int BestTimeToBuy()
+        {
+            int[] prices = new int[] { 7, 1, 5, 3, 6, 4 };
+            int minVal = int.MaxValue;
+            int maxProfit = 0;
+
+            for (int i = 0; i < prices.Count(); i++)
+            {
+                if (prices[i] < minVal)
+                {
+                    minVal = prices[i];
+                }
+                else if ((prices[i] - minVal) > maxProfit)
+                {
+                    maxProfit = (prices[i] - minVal);
+                }
+            }
+            return maxProfit;
+        }
 
     }
 }
