@@ -2260,6 +2260,37 @@ namespace ConsoleApp1
             return maxProfit;
         }
 
+        public static bool ValidPalindrome2()
+        {
+            string x = "ababca";
+            //int c = 0;
+            var t = validPalHelper(x, 0, x.Length - 1,0);
+            return t;
+            
+        }
+        private static bool validPalHelper(string x, int l, int r, int c)
+        {
+            while (l < r)
+            {
+                if (x[l] != x[r])
+                {
+                    if (c > 0)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        c++;
+                        return validPalHelper(x, l+1, r, c) || validPalHelper(x, l, r-1, c);
+                    }
+                }
+                l++;
+                r--;
+
+            }
+            return true;
+        }
+
     }
 }
 
