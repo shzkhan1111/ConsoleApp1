@@ -2290,6 +2290,28 @@ namespace ConsoleApp1
             }
             return true;
         }
+        public static int minSumSubArray()
+        {
+            int[] prices = new int[] { 2, 3, 1, 2, 3, 4 };
+            int sum = 7;
+            int left = 0;
+            int currentSum = 0;
+            int dis = int.MaxValue;
+            for (int i = 0; i < prices.Count(); i++)
+            {
+                currentSum += prices[i];
+                while (currentSum > sum)
+                {
+                    dis = Math.Min(dis, i - left);
+                    currentSum -= prices[left];
+                    left++;
+                }
+            }
+
+            return dis;
+
+        }
+
 
     }
 }
