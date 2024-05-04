@@ -2638,6 +2638,108 @@ namespace ConsoleApp1
             return res;
         }
 
+
+        public static int MaxAreaOf_Island()
+        {
+            int[][] grid = {
+            new int[] { 1, 1, 0, 0, 0 },
+            new int[] { 1, 1, 1, 0, 0 },
+            new int[] { 0, 0, 0, 1, 1 },
+            new int[] { 0, 0, 7, 1, 1 }
+        };
+
+
+
+            int row = grid.Length;
+            int col = grid[0].Length;
+            visited = new bool[row, col];
+            int max = 0;
+            for (int i = 0; i < row;i++)
+            {
+                for (int j = 0; j < col;j++)
+                {
+                    if (grid[i][j] > 0 && !visited[i, j])
+                    {
+                        max = Math.Max(MaxAreaOfIslandHelper(grid, i, j) , max);
+                    }
+                }
+            }
+
+            return max;
+
+
+        }
+
+        private static int MaxAreaOfIslandHelper(int[][] grid, int i,int j)
+        {
+            if (i < 0 || i >= grid.Length  || j < 0 || j >= grid[i].Length || visited[i,j] || grid[i][j] == 0)
+            {
+                return 0;
+            }
+            visited[i, j] = true;
+            int down_sum =  MaxAreaOfIslandHelper(grid, i + 1, j);
+            int up_sum = MaxAreaOfIslandHelper(grid, i - 1, j);
+            int left_sum = MaxAreaOfIslandHelper(grid, i , j+1);
+            int right_sum = MaxAreaOfIslandHelper(grid, i , j-1);
+
+            var total = grid[i][j] + down_sum + up_sum + left_sum + right_sum;
+            return total;
+        }
+
+        //redo reverselist node 
+        public static ListNode reverseListNode2()
+        {
+            #region initialize
+
+            ListNode head = new ListNode(1);
+            head.next = new ListNode(2);
+            head.next.next = new ListNode(3);
+            head.next.next.next = new ListNode(4);
+            head.next.next.next.next = new ListNode(5);
+
+            #endregion
+
+            ListNode prev = null;
+            while (head != null)
+            {
+                ListNode nextnode = head.next;
+                head.next = prev;
+                prev = head;
+                head = nextnode;
+            }
+            return prev;
+
+        }
+        public static string RemoveAdjacentDuplicates()
+        {
+            string s = "abbaca";
+            //Stack<char> stack = new Stack<char>();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(s[0]);
+            for (int i = 1; i < s.Length;i++)
+            {
+                int index = sb.Length - 1;
+                if (index + 1 > 0)
+                {
+                    if (sb[index] == s[i])
+                    {
+                        //remove last character 
+                        sb.Remove(index,1);
+                    }
+                    else
+                    {
+                        //add to last characte
+                        sb.Append(s[i]);
+                    }
+                }
+                else
+                {
+                    sb.Append(s[i]);
+                }
+            }
+            return sb.ToString();
+
+        }
     }
 }
 
