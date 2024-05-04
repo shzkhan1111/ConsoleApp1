@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design.Serialization;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection;
@@ -2312,6 +2313,217 @@ namespace ConsoleApp1
 
         }
 
+        //create a char frequency array
+        public static List<string> wordSubSet()
+        {
+            List<string> res = new List<string>();
+            //string[] A = new string[] { "amazon", "apple", "facebook", "google", "leetcode"};
+            string[] A = new string[] { "amazon", "apple", "facebook", "google", "warrior" };
+            //string[] B = new string[] { "e", "o" };
+            string[] B = new string[] { "wrr" };
+            int[] maxfreqcharArrayA = new int[26];
+            for (int i = 0;i < B.Length; i++)
+            {
+                var bfreq = countFreq(B[i]);
+                for (int j = 0; j < 26;j++)
+                {
+                    maxfreqcharArrayA[j] = Math.Max(maxfreqcharArrayA[j], bfreq[j]);
+                }
+            }
+            bool isvalid = true;
+            foreach (var c in A)
+            {
+                isvalid = true;
+                var r = countFreq(c);
+                for (int i = 0; i < 26; i++)
+                {
+                    if (r[i] < maxfreqcharArrayA[i])
+                    {
+                        isvalid = false;
+                        break;
+                    }
+                }
+                if (isvalid)
+                {
+                    res.Add(c);
+                }
+
+            }
+
+            return res;
+
+        }
+        private static int[] countFreq(string S)
+        {
+            int[] charArray = new int[26];
+            foreach (var s in S)
+            {
+                charArray[s - 'a']++;
+            }
+            return charArray;
+        }
+
+        //log
+        public static bool searchIn2dMatrix()
+        {
+            int search = 12;
+            int[][] matrix = new int[][] {
+            new int[]{1, 2, 3},
+             new int[]{4, 5, 6},
+             new int[]{7, 8, 9},
+            new int[]{10, 11, 12},
+            new int[]{13, 14, 15}
+        };
+            int row = matrix.Length;
+            int col = matrix[0].Length;
+
+            int left = 0;
+            int right = (row * col) - 1;
+
+            while (left < right)
+            {
+                int pos = left + ((right - left) / 2);
+                int midpointval = matrix[pos / col][pos % col];
+                if (midpointval == search)
+                {
+                    return true;
+                }
+                else if (midpointval < search)
+                {
+                    left = pos + 1;
+                }
+                else if (midpointval > search)
+                {
+                    right = pos - 1;
+                }
+            }
+            return false;
+
+        }
+
+        public static string removeKdigitsV1()
+        {
+            int k = 1;
+            string nu = "10200";
+            //string nu = "1432219";
+            //string nu = "1432219";
+
+            int ap = 0;
+            int bp = 1;
+            if (k > nu.Length)
+            {
+                return "0";
+            }
+            int c1 = 0;
+            int[] removedIndex = new int[k];
+            int duplicateInSequence = 0;
+            int i = 0;
+            while (c1 < k && ap < nu.Length && bp < nu.Length)
+            {
+                if (nu[ap] < nu[bp])
+                {
+                    removedIndex[i++] = bp;
+                    bp++;
+                    c1++;
+                }
+                else if (nu[ap] > nu[bp])
+                {
+                    removedIndex[i++] = ap;
+                    while ((duplicateInSequence - 1) > 0 && c1 < k)
+                    {
+                        ap++;
+                        removedIndex.Append(ap);
+                        c1++;
+                    }
+                    duplicateInSequence = 0;
+
+                    ap = bp;
+                    bp++;
+
+
+                    c1++;
+                }
+                else if (nu[ap] == nu[bp])
+                {
+                    duplicateInSequence++;
+                }
+
+                
+            }
+
+            StringBuilder sb = new StringBuilder();
+            bool isFirst0 = true;
+            for (int j =0; j < nu.Length; j++)
+            {
+                if (!removedIndex.Contains(j))
+                {
+                    if (nu[j] != '0')
+                    {
+                        isFirst0 = false;
+                    }
+                    if (!isFirst0)
+                    {
+                        sb.Append(nu[j]);
+                    }
+                }
+            }
+
+            string x = sb.ToString();
+            if (string.IsNullOrEmpty(x))
+            {
+                x = "0";
+            }
+
+            return x;
+
+            //case 444444
+        }
+        public static string removeKdigits()
+        {
+            int k = 2;
+            //string nu = "10200";
+            //string nu = "1432219";
+            string nu = "10";
+
+            //code starts
+            if (k >= nu.Length)
+            {
+                return "0";
+            }
+            Stack<char> stack = new Stack<char>();
+            foreach (char n in nu)
+            {
+                while (k > 0 && stack.Count > 0 && n < stack.Peek())
+                {
+                    stack.Pop();
+                    k--;
+                }
+                stack.Push(n);
+            }
+            while (k > 0 && stack.Count > 0)
+            {
+                stack.Pop();
+                k--;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            while (stack.Count > 0)
+            {
+                sb.Insert(0, stack.Pop());
+            }
+
+            while (sb.Length > 0 && sb[0] == '0')
+            {
+                sb.Remove(0, 1);
+            }
+
+            if (sb.Length == 0)
+            {
+                return "0";
+            }
+
+            return sb.ToString();
+        }
 
     }
 }
