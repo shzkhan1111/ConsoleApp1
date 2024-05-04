@@ -2524,6 +2524,119 @@ namespace ConsoleApp1
 
             return sb.ToString();
         }
+        static bool[,] visited;
+        public static bool wordsearch()
+        {
+            char[][] board = {
+            new char[] { 'A', 'B', 'C', 'E' },
+            new char[] { 'S', 'F', 'C', 'S' },
+            new char[] { 'A', 'D', 'E', 'E' }
+        };
+            string word = "ABCCEP";
+            //string word = "ABCCED";
+
+
+            int row = board.Length;
+            int col = board[0].Length;
+
+            visited = new bool[row, col];
+
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col;j++)
+                {
+                    if (board[i][j] == word[0])
+                    {
+                        if (searchWord(board , word, i,j,0))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        private static bool searchWord(char[][] board, string word, int i, int j, int wordindex)
+        {
+            //if (wordindex == word.Length)
+            if (wordindex == word.Length)
+            {
+                return true;
+            }
+            if (i < 0 || i >= board.Length || j < 0 || j >= board[i].Length || visited[i,j] || board[i][j] != word[wordindex] )
+                return false;
+
+            visited[i, j] = true;
+            if(
+                searchWord(board, word, i+1, j, wordindex+1) ||
+                searchWord(board, word, i-1, j, wordindex+1) ||
+                searchWord(board, word, i, j+1, wordindex+1) ||
+                searchWord(board, word, i, j-1, wordindex+1)
+                )
+            {
+                return true;
+            }
+            visited[i, j] = false;
+            return false;
+        }
+
+        public static int[] twoSumRedo2Pointer()
+        {
+            int[] numbers = { 1, 2, 3, 4, 8 };
+            int target = 7;
+            int[] res = new int[2];
+            int l = 0, r = numbers.Length - 1;
+            while (l < r)
+            {
+                int midSum = numbers[l] + numbers[r];
+                if (midSum < target)
+                {
+                    l++;
+                }
+                else if (midSum > target)
+                {
+                    r--;
+                }
+                else
+                {
+                    res[0] = l;
+                    res[1] = r;
+                    break;
+                }
+            }
+            return res;
+        }
+
+        public static int[] twoSumRedoHashSum()
+        {
+            int[] numbers = { 1, 2, 3, 4, 8 };
+            int target = 7;
+            int[] res = new int[2];
+
+            //HashSet<int> seen = new HashSet<int>();
+            Dictionary<int, int> seen = new Dictionary<int, int>();
+
+            int i = 0;
+            foreach (var n in numbers)
+            {
+                int tosee = target - n;
+                if (seen.ContainsKey(tosee))
+                {
+                    res[0] = seen[tosee];
+                    res[1] = i;
+                    return res;
+                }
+                else
+                {
+                    seen.Add(n, i);
+                }
+                i++;
+            }
+             
+
+            return res;
+        }
 
     }
 }
