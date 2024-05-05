@@ -6,6 +6,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
@@ -2154,12 +2155,12 @@ namespace ConsoleApp1
             int row = matrix.GetLength(0);
             int col = matrix.GetLength(1);
 
-            int[,] res = new int[col,row];
-            for(int i = 0; i < row; i++)
+            int[,] res = new int[col, row];
+            for (int i = 0; i < row; i++)
             {
                 for (int j = 0; j < col; j++)
                 {
-                    res[j,i] = matrix[i,j];
+                    res[j, i] = matrix[i, j];
                 }
             }
             return res;
@@ -2209,7 +2210,7 @@ namespace ConsoleApp1
             while (l1Pointer != null || l2Pointer != null)
             {
                 int sum = 0;
-                if (l1Pointer is null)  
+                if (l1Pointer is null)
                 {
                     sum = l2Pointer.val + carry;
                     l2Pointer = l2Pointer.next;
@@ -2265,9 +2266,9 @@ namespace ConsoleApp1
         {
             string x = "ababca";
             //int c = 0;
-            var t = validPalHelper(x, 0, x.Length - 1,0);
+            var t = validPalHelper(x, 0, x.Length - 1, 0);
             return t;
-            
+
         }
         private static bool validPalHelper(string x, int l, int r, int c)
         {
@@ -2282,7 +2283,7 @@ namespace ConsoleApp1
                     else
                     {
                         c++;
-                        return validPalHelper(x, l+1, r, c) || validPalHelper(x, l, r-1, c);
+                        return validPalHelper(x, l + 1, r, c) || validPalHelper(x, l, r - 1, c);
                     }
                 }
                 l++;
@@ -2322,10 +2323,10 @@ namespace ConsoleApp1
             //string[] B = new string[] { "e", "o" };
             string[] B = new string[] { "wrr" };
             int[] maxfreqcharArrayA = new int[26];
-            for (int i = 0;i < B.Length; i++)
+            for (int i = 0; i < B.Length; i++)
             {
                 var bfreq = countFreq(B[i]);
-                for (int j = 0; j < 26;j++)
+                for (int j = 0; j < 26; j++)
                 {
                     maxfreqcharArrayA[j] = Math.Max(maxfreqcharArrayA[j], bfreq[j]);
                 }
@@ -2448,12 +2449,12 @@ namespace ConsoleApp1
                     duplicateInSequence++;
                 }
 
-                
+
             }
 
             StringBuilder sb = new StringBuilder();
             bool isFirst0 = true;
-            for (int j =0; j < nu.Length; j++)
+            for (int j = 0; j < nu.Length; j++)
             {
                 if (!removedIndex.Contains(j))
                 {
@@ -2543,11 +2544,11 @@ namespace ConsoleApp1
 
             for (int i = 0; i < row; i++)
             {
-                for (int j = 0; j < col;j++)
+                for (int j = 0; j < col; j++)
                 {
                     if (board[i][j] == word[0])
                     {
-                        if (searchWord(board , word, i,j,0))
+                        if (searchWord(board, word, i, j, 0))
                         {
                             return true;
                         }
@@ -2564,15 +2565,15 @@ namespace ConsoleApp1
             {
                 return true;
             }
-            if (i < 0 || i >= board.Length || j < 0 || j >= board[i].Length || visited[i,j] || board[i][j] != word[wordindex] )
+            if (i < 0 || i >= board.Length || j < 0 || j >= board[i].Length || visited[i, j] || board[i][j] != word[wordindex])
                 return false;
 
             visited[i, j] = true;
-            if(
-                searchWord(board, word, i+1, j, wordindex+1) ||
-                searchWord(board, word, i-1, j, wordindex+1) ||
-                searchWord(board, word, i, j+1, wordindex+1) ||
-                searchWord(board, word, i, j-1, wordindex+1)
+            if (
+                searchWord(board, word, i + 1, j, wordindex + 1) ||
+                searchWord(board, word, i - 1, j, wordindex + 1) ||
+                searchWord(board, word, i, j + 1, wordindex + 1) ||
+                searchWord(board, word, i, j - 1, wordindex + 1)
                 )
             {
                 return true;
@@ -2633,7 +2634,7 @@ namespace ConsoleApp1
                 }
                 i++;
             }
-             
+
 
             return res;
         }
@@ -2654,13 +2655,13 @@ namespace ConsoleApp1
             int col = grid[0].Length;
             visited = new bool[row, col];
             int max = 0;
-            for (int i = 0; i < row;i++)
+            for (int i = 0; i < row; i++)
             {
-                for (int j = 0; j < col;j++)
+                for (int j = 0; j < col; j++)
                 {
                     if (grid[i][j] > 0 && !visited[i, j])
                     {
-                        max = Math.Max(MaxAreaOfIslandHelper(grid, i, j) , max);
+                        max = Math.Max(MaxAreaOfIslandHelper(grid, i, j), max);
                     }
                 }
             }
@@ -2670,17 +2671,17 @@ namespace ConsoleApp1
 
         }
 
-        private static int MaxAreaOfIslandHelper(int[][] grid, int i,int j)
+        private static int MaxAreaOfIslandHelper(int[][] grid, int i, int j)
         {
-            if (i < 0 || i >= grid.Length  || j < 0 || j >= grid[i].Length || visited[i,j] || grid[i][j] == 0)
+            if (i < 0 || i >= grid.Length || j < 0 || j >= grid[i].Length || visited[i, j] || grid[i][j] == 0)
             {
                 return 0;
             }
             visited[i, j] = true;
-            int down_sum =  MaxAreaOfIslandHelper(grid, i + 1, j);
+            int down_sum = MaxAreaOfIslandHelper(grid, i + 1, j);
             int up_sum = MaxAreaOfIslandHelper(grid, i - 1, j);
-            int left_sum = MaxAreaOfIslandHelper(grid, i , j+1);
-            int right_sum = MaxAreaOfIslandHelper(grid, i , j-1);
+            int left_sum = MaxAreaOfIslandHelper(grid, i, j + 1);
+            int right_sum = MaxAreaOfIslandHelper(grid, i, j - 1);
 
             var total = grid[i][j] + down_sum + up_sum + left_sum + right_sum;
             return total;
@@ -2716,7 +2717,7 @@ namespace ConsoleApp1
             //Stack<char> stack = new Stack<char>();
             StringBuilder sb = new StringBuilder();
             sb.Append(s[0]);
-            for (int i = 1; i < s.Length;i++)
+            for (int i = 1; i < s.Length; i++)
             {
                 int index = sb.Length - 1;
                 if (index + 1 > 0)
@@ -2724,7 +2725,7 @@ namespace ConsoleApp1
                     if (sb[index] == s[i])
                     {
                         //remove last character 
-                        sb.Remove(index,1);
+                        sb.Remove(index, 1);
                     }
                     else
                     {
@@ -2740,8 +2741,140 @@ namespace ConsoleApp1
             return sb.ToString();
 
         }
+
+        public static int perimeterOf_Island()
+        {
+            int[][] grid = new int[][] {
+                            new int[] {0, 1, 0, 0},
+                            new int[] {1, 1, 1, 0},
+                            new int[] {0, 1, 0, 0},
+                            new int[] {1, 1, 0, 0}
+                        };
+            int res = 0;
+            for (int i = 0; i < grid.Length; i++)
+            {
+                for (int j = 0; j < grid[i].Length; j++)
+                {
+                    if (grid[i][j] == 1)
+                    {
+                        res += 4;
+
+                        if (i > 0 && grid[i - 1][j] == 1)
+                        {
+                            res -= 2;
+                        }
+                        if (j > 0 && grid[i][j - 1] == 1)
+                        {
+                            res -= 2;
+                        }
+                    }
+                        
+                }
+
+            }
+            return res;
+
+        }
+
+        public static int countCharacters()
+        {
+            string[] words = { "cat", "bt", "hat", "tree" };
+            string chars = "atach";
+            int res = 0;
+            Dictionary<char, int> countChars = new Dictionary<char, int>();
+            foreach (var c in chars)
+            {
+                if (countChars.ContainsKey(c))
+                {
+                    countChars[c]++;
+                }
+                else
+                {
+                    countChars.Add(c, 1);
+                }
+            }
+            foreach (var w in words)
+            {
+                int[] seen = new int[26];
+                bool isContain = true;
+                for (int i = 0; i < w.Length;i++)
+                {
+                    if (countChars.ContainsKey(w[i]) && seen[w[i] -'a'] < countChars[w[i]])
+                    {
+                        seen[w[i] - 'a']++;
+                    }
+                    else
+                    {
+                        isContain = false;
+                    }
+                }
+                if (isContain)
+                {
+                    res += w.Length;
+                }
+            }
+
+            return res;
+        }
+
+        public static int maxNumberOf1InArray()
+        {
+            int[] nums = new int[] { 1, 1, 0, 1, 1, 1 };
+
+            int res = 0;
+            int c = 0;
+            foreach (int n in nums )
+            {
+                if (n != 0)
+                {
+                    c++;
+                }
+                else
+                {
+                    res = Math.Max(res, c);
+                    c = 0;
+                }
+            }
+            res = Math.Max(res, c);
+            return res;
+        }
+
+        public static List<string> FizzBuzz()
+        {
+            int n = 15;
+            int i = 1;
+            List<string> res = new List<string>();
+            while (i <= n)
+            {
+                if (i % 3 == 0 && i % 5 == 0)
+                {
+                    res.Add("FizzBuzz");
+                }
+                else if(i % 3 == 0)
+                {
+                    res.Add("Fizz");
+                }
+                else if (i % 5 == 0)
+                {
+                    res.Add("Buzz");
+                }
+                else
+                {
+                    res.Add(i.ToString());
+                }
+
+                i++;
+            }
+            return res;
+
+        }
+
+        
+
+
     }
 }
+
 
 
 
