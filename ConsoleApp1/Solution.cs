@@ -2768,7 +2768,7 @@ namespace ConsoleApp1
                             res -= 2;
                         }
                     }
-                        
+
                 }
 
             }
@@ -2797,9 +2797,9 @@ namespace ConsoleApp1
             {
                 int[] seen = new int[26];
                 bool isContain = true;
-                for (int i = 0; i < w.Length;i++)
+                for (int i = 0; i < w.Length; i++)
                 {
-                    if (countChars.ContainsKey(w[i]) && seen[w[i] -'a'] < countChars[w[i]])
+                    if (countChars.ContainsKey(w[i]) && seen[w[i] - 'a'] < countChars[w[i]])
                     {
                         seen[w[i] - 'a']++;
                     }
@@ -2823,7 +2823,7 @@ namespace ConsoleApp1
 
             int res = 0;
             int c = 0;
-            foreach (int n in nums )
+            foreach (int n in nums)
             {
                 if (n != 0)
                 {
@@ -2850,7 +2850,7 @@ namespace ConsoleApp1
                 {
                     res.Add("FizzBuzz");
                 }
-                else if(i % 3 == 0)
+                else if (i % 3 == 0)
                 {
                     res.Add("Fizz");
                 }
@@ -2868,11 +2868,93 @@ namespace ConsoleApp1
             return res;
 
         }
+        public static int OddEvenJumpsV1()
+        {
+            int[] A = { 10, 13, 12, 14, 15 };
+            int length = A.Length;
+            bool[] evenJump = new bool[length];
+            bool[] oddJump = new bool[length];
 
-        
+            int res = 1;
+            //value , index
+            Dictionary<int, int> sortedDictionary = new Dictionary<int, int>();
+            evenJump[length - 1] = true;
+            oddJump[length - 1] = true;
+
+            sortedDictionary.Add(A[length - 1], length - 1);
+
+            for (int i = length - 2; i >= 0; i--)
+            {
+
+                // Find the smallest key greater than or equal to A[i]
+                var oddIndex = sortedDictionary.Keys.FirstOrDefault(key => key >= A[i]);
+                // Find the largest key smaller than or equal to A[i]
+                var evenIndex = sortedDictionary.Keys.LastOrDefault(key => key <= A[i]);
+
+                if (oddIndex != 0)
+                {
+                    oddJump[i] = evenJump[oddIndex];
+                }
+                if (evenIndex != 0)
+                {
+                    evenJump[i] = oddJump[evenIndex];
+                }
+                sortedDictionary[A[i]] = i;
+                if (oddJump[i])
+                {
+                    res++;
+                }
+
+            }
+            return res;
+        }
 
 
+
+        public static int OddEvenJumps(/*int[] A*/)
+        {
+            int[] A = { 10, 13, 12, 14, 12, 15 };
+            var length = A.Length;
+            var oddPosibility = new bool[length];
+            var evenPosibility = new bool[length];
+            oddPosibility[length - 1] = true;
+            evenPosibility[length - 1] = true;
+
+            var map = new SortedList<int, int>
+            {
+                { A[length - 1], length - 1 }
+            };
+            var result = 1;
+            for (int i = length - 2; i >= 0; i--)
+            {
+                var existed = map.TryGetValue(A[i], out int index);
+                map[A[i]] = i;
+
+                if (existed)
+                {
+                    oddPosibility[i] = evenPosibility[index];
+                    evenPosibility[i] = oddPosibility[index];
+                }
+                else
+                {
+                    index = map.IndexOfKey(A[i]);
+                    if (index != map.Count - 1)
+                        oddPosibility[i] = evenPosibility[map.Values[index + 1]];
+                    if (index != 0)
+                        evenPosibility[i] = oddPosibility[map.Values[index - 1]];
+                }
+
+                if (oddPosibility[i])
+                    result++;
+            }
+
+            return result;
+        }
     }
+
+
+
+
 }
 
 

@@ -72,7 +72,7 @@ namespace ConsoleApp1
             //    Console.WriteLine("Not Perfect");
             //}
             //var Ss = Solution.BinarySearch(numbers , 8);
-            Solution.FizzBuzz();
+            Solution.OddEvenJumps();
             //if (t)
             //{
             //    Console.WriteLine("Yes");
