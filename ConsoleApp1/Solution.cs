@@ -3075,7 +3075,7 @@ namespace ConsoleApp1
                             low++;
                             high--;
                         }
-                        
+
                         if (low < high)
                         {
                             if (nums[low] + nums[high] > sum)
@@ -3087,7 +3087,7 @@ namespace ConsoleApp1
                                 low++;
                             }
                         }
-                        
+
 
                     }
 
@@ -3097,6 +3097,39 @@ namespace ConsoleApp1
             return result;
         }
 
+        public int MaxIncreaseKeepingSkyline()
+        {
+            int[][] grid = new int[][] {
+            new int[] {3, 0, 8, 4},
+            new int[] {2, 4, 5, 7},
+            new int[] {9, 2, 6, 3},
+            new int[] {0, 3, 1, 0}
+        };
+            int row = grid.Length;
+            int col = grid[0].Length;
+            int[] max_rowarray = new int[row];
+            int[] max_colarray = new int[col];
+            int res = 0;
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    max_colarray[j] = Math.Max(grid[i][j] , max_colarray[j]);
+                    max_rowarray[i] = Math.Max(grid[i][j] , max_rowarray[i]);
+                }
+            }
+
+
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    res += Math.Min(max_colarray[j], max_rowarray[i]) - grid[i][j];
+                }
+            }
+
+            return res;
+        }
     }
 }
 
