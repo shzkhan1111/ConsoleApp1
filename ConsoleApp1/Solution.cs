@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design.Serialization;
 using System.Diagnostics.Contracts;
+using System.IO.MemoryMappedFiles;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection;
@@ -2950,13 +2951,154 @@ namespace ConsoleApp1
 
             return result;
         }
+
+        public static string licensekeyformatting()
+        {
+            string S = "5F3Z-2e-9-w";
+            int K = 4;
+            string S1 = S.Replace("-", "").ToUpper();
+            int len = S1.Length;
+            int remLen = len % K;
+
+            int index = 0;
+            StringBuilder res = new StringBuilder();
+            if (remLen > 0)
+            {
+                res.Append(S1.Substring(0, remLen));
+                index += remLen;
+            }
+            while (index < len)
+            {
+                if (index > 0) res.Append("-");
+                res.Append(S1.Substring(index, K));
+                index += K;
+            }
+            return res.ToString();
+
+        }
+
+        public static int totalFruits()
+        {
+
+            int[] tree = new[] { 3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4 };
+
+            int firstFruit = -1;
+            int secondFruit = -1;
+            int currentMax = 0;
+            int max = 0;
+            int lastfruitCount = 0;
+            foreach (int a in tree)
+            {
+                if (a == firstFruit || a == secondFruit)
+                {
+                    currentMax++;
+                }
+                else
+                {
+                    currentMax = lastfruitCount + 1;
+                }
+
+                if (secondFruit == a)
+                {
+                    lastfruitCount++;
+                }
+                else
+                {
+                    lastfruitCount = 1;
+                    firstFruit = secondFruit;
+                    secondFruit = a;
+                }
+                max = Math.Max(currentMax, max);
+            }
+            return max;
+
+
+        }
+
+        public static int lengthOfLongestSubstringwithoutRepeating()
+        {
+            string s = "pwwkew";
+
+            int a = 0;
+            int b = 0;
+            int max = 0;
+            HashSet<int> hashset = new HashSet<int>();
+
+            while (b < s.Length)
+            {
+                if (!hashset.Contains(s[b]))
+                {
+
+                    hashset.Add(s[b]);
+                    b++;
+                    max = Math.Max(hashset.Count, max);
+                }
+                else
+                {
+                    hashset.Remove(s[b]);
+                    a++;
+                }
+            }
+            return max;
+
+        }
+
+
+        public static IList<IList<int>> ThreeSum()
+        {
+            int[] nums = new int[] { -1, 0, 1, 2, -1, -4 };
+
+            IList<IList<int>> result = new List<IList<int>>();
+            Array.Sort(nums);
+
+            for (int i = 0; i < nums.Length - 2; i++)
+            {
+                int low = i + 1;
+                int high = nums.Length - 1;
+                int sum = 0 - nums[i];
+                if (i == 0 || nums[i] != nums[i - 1])
+                {
+
+                    while (low < high)
+                    {
+                        if (nums[low] + nums[high] == sum)
+                        {
+                            result.Add(new int[] { nums[i], nums[low], nums[high] });
+                            while (low < high && nums[low] == nums[low + 1])
+                            {
+                                low++;
+                            }
+                            while (low < high && nums[high] == nums[high - 1])
+                            {
+                                high--;
+                            }
+                            low++;
+                            high--;
+                        }
+                        
+                        if (low < high)
+                        {
+                            if (nums[low] + nums[high] > sum)
+                            {
+                                high--;
+                            }
+                            else if (nums[low] + nums[high] < sum)
+                            {
+                                low++;
+                            }
+                        }
+                        
+
+                    }
+
+                }
+
+            }
+            return result;
+        }
+
     }
-
-
-
-
 }
-
 
 
 
