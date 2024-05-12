@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -3129,6 +3130,12 @@ namespace ConsoleApp1
             }
 
             return res;
+        }
+        public static string removeVowels()
+        {
+            string s = "shyuioopoiwq";
+            s = Regex.Replace(s, "[aeiou]", "");
+            return s;
         }
     }
 }
