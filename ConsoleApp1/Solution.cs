@@ -3137,6 +3137,89 @@ namespace ConsoleApp1
             s = Regex.Replace(s, "[aeiou]", "");
             return s;
         }
+
+        public static IList<string> LetterCombinations()
+        {
+            string digits = "23";
+                string[] charmapping = new string[] { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+                Queue<string> outputArray = new Queue<string>();
+                outputArray.Enqueue("");
+                for (int i = 0; i < digits.Length; i++)
+                {
+                    int dig = digits[i] - '0';
+                    string character = charmapping[dig];
+                    while (outputArray.Peek().Length == i)
+                    {
+                        string o = outputArray.Dequeue();
+                        foreach (var c in character)
+                        {
+                            outputArray.Enqueue(o + c);
+                        }
+                    }
+                }
+                List<string> ss = new List<string>(outputArray);
+                return ss;
+        }
+
+        //here 1
+        //public static int subarray(/*int[] nums , int k*/)
+        //{
+        //    int[] nums = { 1, 1, 1 };
+        //    int k = 2;
+        //    int count = 0;
+        //    int sum = 0;
+        //    int[] sum_array = new int[nums.Length];
+
+
+        //}
+
+        public static void ReorderList()
+        {
+            ListNode head = new ListNode(1);
+            head.next = new ListNode(2);
+            head.next.next = new ListNode(3);
+            head.next.next.next = new ListNode(4);
+            head.next.next.next.next = new ListNode(5);
+            head.next.next.next.next.next = new ListNode(6);
+
+            ListNode slow = head;
+            ListNode fast = head;
+
+            while (fast?.next != null)
+            {
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+            
+            //reverse so that the last element can be inserted as in odd eeven list 
+            ListNode prev = null;
+            ListNode n1 = slow;
+            while (n1 != null)
+            {
+                ListNode next = n1.next;
+                n1.next = prev;
+                prev = n1;
+                n1 = next;
+            }
+
+
+            //prev reveresed 
+            //var x = prev;
+            //merge the 2 array
+
+            ListNode first = head, second = prev;
+            while (second.next != null)
+            {
+                ListNode t1 = first.next;
+                ListNode t2 = second.next;
+                first.next = second;
+                second.next = t1;
+                first = t1;
+                second = t2;
+            }
+
+        }
+
     }
 }
 
