@@ -3205,7 +3205,7 @@ namespace ConsoleApp1
 
             //prev reveresed 
             //var x = prev;
-            //merge the 2 array
+            //merge the 2 array 
 
             ListNode first = head, second = prev;
             while (second.next != null)
