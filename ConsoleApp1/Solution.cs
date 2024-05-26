@@ -3220,6 +3220,52 @@ namespace ConsoleApp1
 
         }
 
+        public static ListNode reverseListNodeFromNtoM()
+        {
+            #region initialize
+
+            ListNode head = new ListNode(1);
+            head.next = new ListNode(2);
+            head.next.next = new ListNode(3);
+            head.next.next.next = new ListNode(4);
+            head.next.next.next.next = new ListNode(5);
+            head.next.next.next.next.next = new ListNode(6);
+            int m = 2, n = 4;
+
+            #endregion  
+            ListNode prevNode = null;
+            ListNode current = head;
+            while (m > 1)
+            {
+                prevNode = head;
+                current = current.next;
+                m--;
+                n--;
+            }
+            ListNode prevTemp = prevNode;
+            ListNode curTemp = current;
+            while (n > 0)
+            {
+                ListNode next = current.next;
+                current.next = prevNode;
+                prevNode = current;
+                current = next;
+                n--;
+            }
+            if (prevTemp != null)
+            {
+                prevTemp.next = prevNode;
+            }
+            else
+            {
+                head = prevNode;
+            }
+            curTemp.next = current;
+            return head;
+
+        }
+
+
     }
 }
 
