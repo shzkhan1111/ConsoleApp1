@@ -72,7 +72,7 @@ namespace ConsoleApp1
             //    Console.WriteLine("Not Perfect");
             //}
             //var Ss = Solution.BinarySearch(numbers , 8);
-            Solution.reverseListNodeFromNtoM();
+            Solution.LeastDistFromStop();
             //if (t)
             //{
             //    Console.WriteLine("Yes");

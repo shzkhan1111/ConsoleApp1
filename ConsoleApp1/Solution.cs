@@ -3265,6 +3265,29 @@ namespace ConsoleApp1
 
         }
 
+        public static int LeastDistFromStop()
+        {
+            int n = 3;
+            int[] stops = new int[] { 1, 2, 3, 4 };
+            int left = 0, rig = stops.Length - 1;
+            int lsum = 0, rsum = 0;
+            while (stops[left] != n || stops[rig] != n)
+            {
+                if (stops[left] != n)
+                {
+                    lsum = lsum + stops[left];
+                    left++;
+                }
+                if (stops[left] != n)
+                {
+                    rsum = rsum + stops[rig];
+                    rig--;
+                }
+                 
+            }
+            int min = Math.Min(lsum, rsum);
+            return min;
+        }
 
     }
 }
