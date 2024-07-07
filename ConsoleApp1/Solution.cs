@@ -3321,7 +3321,44 @@ namespace ConsoleApp1
             return dummy;
         }
 
+        public static string mostrepeatednonbannedword()
+        {
+            string para = "Bob hit the ball the ball ball ball was far from where it was";
+            string[] banned = new string[] { "hit" };
+            HashSet<string> bannedword= new HashSet<string>(); ;
+            Dictionary<string, int>  wordcount= new Dictionary<string, int>();
+            foreach (var word in banned)
+            {
+                bannedword.Add(word);
+            }
+            foreach (var word in para.Split(' '))
+            {
+                if (!bannedword.Contains(word))
+                {
+                    if (wordcount.ContainsKey(word))
+                    {
+                        wordcount[word]++;
+                    }
+                    else
+                    {
+                        wordcount[word] = 1;
+                    }
+                }
+            }
+            string max_occurword = "";
+            int max = 0;
+            foreach (var w in wordcount)
+            {
+                if (w.Value > max)
+                {
+                    max = w.Value;
+                    max_occurword = w.Key;
+                }
+            }
+            return max_occurword;
 
+
+        }
 
     }
 }
