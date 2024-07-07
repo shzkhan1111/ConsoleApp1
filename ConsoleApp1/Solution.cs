@@ -3289,6 +3289,38 @@ namespace ConsoleApp1
             return min;
         }
 
+        public static ListNode removeNthElements()
+        {
+            int n = 2;
+            ListNode head = new ListNode(1);
+            head.next = new ListNode(2);
+            head.next.next = new ListNode(3);
+            head.next.next.next = new ListNode(4);
+            head.next.next.next.next = new ListNode(5);
+            head.next.next.next.next.next = new ListNode(6);
+
+            var slowpointer = head;
+            var fastpointer = head;
+
+            for (int i = 0; i < n; i++)
+            {
+                if (fastpointer.next != null)
+                {
+                    fastpointer = fastpointer.next;
+                }
+            }
+            while (fastpointer.next != null)
+            {
+                slowpointer = slowpointer.next;
+                fastpointer = fastpointer.next;
+            }
+            slowpointer.next = null;
+
+            ListNode dummy = slowpointer;
+
+            return dummy;
+        }
+
     }
 }
 

@@ -82,7 +82,7 @@ namespace ConsoleApp1
             //{
             //    Console.WriteLine("No");
             //}
-
+            var ss = Solution.removeNthElements();
             //Assembly assembly = Assembly.GetExecutingAssembly();
             //Type type = assembly.GetType("ConsoleApp1.Person");
             //object personInstance = Activator.CreateInstance(type);
@@ -93,7 +93,7 @@ namespace ConsoleApp1
 
             //MethodInfo secretMethod = type.GetMethod("SecretMethod", BindingFlags.NonPublic | BindingFlags.Instance);
             //secretMethod.Invoke(personInstance, null);
-            
+
             //MethodInfo setValuesAndPrintMethod = type.GetMethod("setValuesandprint", BindingFlags.NonPublic | BindingFlags.Instance);
             //setValuesAndPrintMethod.Invoke(personInstance, new object[] {10, 20});
 
