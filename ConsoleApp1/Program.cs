@@ -83,19 +83,19 @@ namespace ConsoleApp1
             //    Console.WriteLine("No");
             //}
 
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            Type type = assembly.GetType("ConsoleApp1.Person");
-            object personInstance = Activator.CreateInstance(type);
-            PropertyInfo nameProperty = type.GetProperty("Name");
-            nameProperty.SetValue(personInstance, "Hello someone");
-            PropertyInfo ageproperty= type.GetProperty("Age");
-            ageproperty.SetValue(personInstance, 30);
+            //Assembly assembly = Assembly.GetExecutingAssembly();
+            //Type type = assembly.GetType("ConsoleApp1.Person");
+            //object personInstance = Activator.CreateInstance(type);
+            //PropertyInfo nameProperty = type.GetProperty("Name");
+            //nameProperty.SetValue(personInstance, "Hello someone");
+            //PropertyInfo ageproperty= type.GetProperty("Age");
+            //ageproperty.SetValue(personInstance, 30);
 
-            MethodInfo secretMethod = type.GetMethod("SecretMethod", BindingFlags.NonPublic | BindingFlags.Instance);
-            secretMethod.Invoke(personInstance, null);
+            //MethodInfo secretMethod = type.GetMethod("SecretMethod", BindingFlags.NonPublic | BindingFlags.Instance);
+            //secretMethod.Invoke(personInstance, null);
             
-            MethodInfo setValuesAndPrintMethod = type.GetMethod("setValuesandprint", BindingFlags.NonPublic | BindingFlags.Instance);
-            setValuesAndPrintMethod.Invoke(personInstance, new object[] {10, 20});
+            //MethodInfo setValuesAndPrintMethod = type.GetMethod("setValuesandprint", BindingFlags.NonPublic | BindingFlags.Instance);
+            //setValuesAndPrintMethod.Invoke(personInstance, new object[] {10, 20});
 
 
 
