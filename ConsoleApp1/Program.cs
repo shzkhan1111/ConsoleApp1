@@ -82,7 +82,7 @@ namespace ConsoleApp1
             //{
             //    Console.WriteLine("No");
             //}
-            var ss = Solution.nextGreatestInsubsetgivenCircular();
+            var ss = Solution.nextGreatestNode();
             //TicTakToe ticTakToe = new TicTakToe();
             //int row = 0;
             //int col = 0;

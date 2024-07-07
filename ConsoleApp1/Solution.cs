@@ -3417,6 +3417,48 @@ namespace ConsoleApp1
 
             return ans;
         }
+
+        public static int[] nextGreatestNode()
+        {
+            //ListNode head = new ListNode(1);
+            //head.next = new ListNode(2);
+            //head.next.next = new ListNode(3);
+            //head.next.next.next = new ListNode(4);
+            //head.next.next.next.next = new ListNode(5);
+            //head.next.next.next.next.next = new ListNode(6);
+            ListNode head = new ListNode(2);
+            head.next = new ListNode(1);
+            head.next.next = new ListNode(5);
+            //head.next.next.next = new ListNode(4);
+            //head.next.next.next.next = new ListNode(5);
+            //head.next.next.next.next.next = new ListNode(6);
+
+            List<int> vals = new List<int>();
+            //make a list 
+            ListNode curr = head;
+            while (curr != null)
+            {
+                vals.Add(curr.val);
+                curr = curr.next;
+            }
+
+            Stack<int> stack = new Stack<int>();
+            int[] ans = new int[vals.Count()];
+            Array.Fill(ans, -1);
+            int n = vals.Count();
+            for (int i = 0; i < n * 2; i++)
+            {
+                while(stack.Count > 0 && vals[stack.Peek()] < vals[i % n])
+                {
+                    ans[stack.Pop()] = vals[i % n];
+                }
+                if (i < n)
+                {
+                    stack.Push(i);
+                }
+            }
+            return ans;
+        }
     }
 }
 
