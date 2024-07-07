@@ -3360,6 +3360,63 @@ namespace ConsoleApp1
 
         }
 
+        public static int[] nextGreatestInsubset()
+        {
+            int[] n2 = new int[] { 4, 1, 2 };
+            //int[] n2 = new int[] { 1,3,4,2};
+            int[] n1 = new int[] { 1,3,2,4};
+
+            int[] ans = new int[n2.Length];
+            //dictionary for next greatest elemebt 
+            var nextGreatest = new Dictionary<int, int>();
+            Stack<int> stack = new Stack<int>();
+            foreach (var n in n1)
+            {
+                while (stack.Count > 0 && stack.Peek() < n)
+                {
+                    nextGreatest.Add(stack.Pop(), n);
+                }
+
+                stack.Push(n);
+            }
+            for (int i = 0; i < n2.Length; i++)
+            {
+                if (nextGreatest.ContainsKey(n2[i]))
+                {
+                    ans[i] = nextGreatest[n2[i]];
+                }
+                else
+                {
+                    ans[i] = -1;
+                }
+            }
+
+
+            return ans;
+
+        }
+
+        public static int[] nextGreatestInsubsetgivenCircular()
+        {
+            int[] n1 = new int[] { 1, 3, 2, 4 };
+            int n = n1.Length;
+            int[] ans = new int[n1.Length];
+            Array.Fill(ans, -1);
+            Stack<int> stack = new Stack<int>();
+            for (int i = 0; i < n * 2;i++)
+            {
+                while (stack.Count > 0 && n1[stack.Peek()] < n1[i % n])
+                {
+                    ans[stack.Pop()] = n1[i % n];
+                }
+                if (i < n)
+                {
+                    stack.Push(i);
+                }
+            }
+
+            return ans;
+        }
     }
 }
 
