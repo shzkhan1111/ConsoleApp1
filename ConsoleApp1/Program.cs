@@ -82,7 +82,18 @@ namespace ConsoleApp1
             //{
             //    Console.WriteLine("No");
             //}
-            var ss = Solution.removeNthElements();
+            //var ss = Solution.removeNthElements();
+            TicTakToe ticTakToe = new TicTakToe();
+            int row = 0;
+            int col = 0;
+            int player = 0;
+            do
+            {
+                Console.WriteLine("Enter value for row and column");
+                row = (Console.ReadKey().KeyChar - '0');
+                col = (Console.ReadKey().KeyChar - '0');
+                player++;
+            } while (!ticTakToe.makeAMove(row, col, player % 2));
             //Assembly assembly = Assembly.GetExecutingAssembly();
             //Type type = assembly.GetType("ConsoleApp1.Person");
             //object personInstance = Activator.CreateInstance(type);
