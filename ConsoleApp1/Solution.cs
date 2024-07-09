@@ -3459,6 +3459,56 @@ namespace ConsoleApp1
             }
             return ans;
         }
+
+        public static  string decode_string()
+        {
+            string s = "3[a2[c]]";
+            //accaccacc
+            //string s = "3[a]2[bc]";
+            Stack<int> count = new Stack<int>();
+            Stack<string> word = new Stack<string>();
+            int i = 0;
+            string res = "";
+            while ( i < s.Length)
+            {
+                if (char.IsDigit(s[i]))
+                {
+                    int c = 0;
+                    while (char.IsDigit(s[i]))
+                    {
+                        c = c * 10 + (s[i] - '0');
+                        i++;
+                    }
+                    count.Push(c);
+                }
+                else if (s[i] == '[')
+                {
+                    word.Push(res);
+                    res = "";
+                    i++;
+                }
+                else if (s[i] == ']')
+                {
+                    int c1 = count.Pop();
+                    for (int j = 0;j < c1;j++)
+                    {
+                        res += res;
+                    }
+                    res = word.Pop() + res;
+                    //res = word.Pop() + res;
+                    
+                    i++;
+                }
+                else
+                {
+                    res += s[i];
+                    i++;
+                }
+            }
+
+            return res;
+
+        }
     }
 }
 
