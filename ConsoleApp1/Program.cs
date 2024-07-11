@@ -82,7 +82,7 @@ namespace ConsoleApp1
             //{
             //    Console.WriteLine("No");
             //}
-            var ss = Solution.rotatearray();
+            var ss = Solution.buddystring();
             //TicTakToe ticTakToe = new TicTakToe();
             //int row = 0;
             //int col = 0;

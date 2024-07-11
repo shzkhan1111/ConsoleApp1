@@ -3550,6 +3550,41 @@ namespace ConsoleApp1
 
             return arrnew;
         }
+
+        public static bool buddystring()
+        {
+            string a = "acaaaaaaaaaaaa";
+            string b = "Baaaaaaaaaaaaa";
+            List<int> differencematrix = new List<int>();
+            if (a.Length != b.Length)
+            {
+                return false;
+            }
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] != b[i])
+                {
+                    differencematrix.Add(i);
+                }
+            }
+            if (differencematrix.Count() > 2 && differencematrix.Count() == 1)
+            {
+                return false;
+            }
+            if (
+                b[differencematrix[0]] == a[differencematrix[1]] &&
+                a[differencematrix[0]] == b[differencematrix[1]]
+                )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
     }
 }
 
