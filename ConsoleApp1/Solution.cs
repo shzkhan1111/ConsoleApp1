@@ -3540,6 +3540,16 @@ namespace ConsoleApp1
             }
             return position;
         }
+
+        public static int[] rotatearray()
+        {
+            int[] array = new int[] {7,6,5,4,3,2,1 };
+            int rotatevalue = 3;
+            int len = array.Length;
+            int[] arrnew = array.TakeLast(rotatevalue).Concat(array.Take(len  - rotatevalue)).ToArray();
+
+            return arrnew;
+        }
     }
 }
 
