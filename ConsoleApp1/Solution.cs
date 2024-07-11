@@ -3509,6 +3509,37 @@ namespace ConsoleApp1
             return res;
 
         }
+
+        public static List<int> distancebetweenes()
+        {
+            string s = "loveleetcode";
+            char l = 'e';
+            int d = s.Length;
+            List<int> position = new List<int>();
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == l)
+                {
+                    d = 0;
+                }
+                position.Add(d);
+                d++;
+            }
+             d = s.Length;
+            for (int i = s.Length - 1; i >= 0; i--)
+            {
+                if (s[i] == l)
+                {
+                    d = 0;
+                }
+                if (position[i] > d)
+                {
+                    position[i] = d;
+                }
+                d++;
+            }
+            return position;
+        }
     }
 }
 
