@@ -3585,6 +3585,52 @@ namespace ConsoleApp1
 
 
         }
+
+        public static bool longpressed()
+        {
+            string name= "vtkgn";
+            string typed = "vttkgnn";
+
+            if (typed.Length < name.Length) {
+                return false;
+            }
+
+            int i = 0;
+            int j = 0;
+            while (i < typed.Length && j < name.Length)
+            {
+                if (typed[i] == name[j])
+                {
+                    i++;j++;
+                }
+                else if (typed[i] != name[j])
+                {
+                    if (i != 0 && j != 0 && typed[i - 1] == typed[i])
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            while (i < typed.Length)
+            {
+                if (typed[i] == typed[i-1])
+                {
+                    i++;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            bool ans = (i == (typed.Length ) && j == (name.Length));
+            return ans;
+
+                
+        }
     }
 }
 
