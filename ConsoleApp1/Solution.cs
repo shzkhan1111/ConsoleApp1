@@ -3740,6 +3740,36 @@ namespace ConsoleApp1
             return sum;
 
         }
+
+        public static int mincostclimblingstairs()
+        {
+            int[] cost = { 1, 100, 1, 1, 1, 100, 1, 1, 100, 1 };
+            for (int i = 2; i < cost.Length;i++)
+            {
+                cost[i] += Math.Min(cost[i-1] , cost[i - 2]);
+            }
+            int res = Math.Min(cost[cost.Length - 1] , cost[cost.Length - 2]);
+
+            return res;
+        }
+
+        public static int mincostclimblingstairs2()
+        {
+            int[] cost = { 1, 100, 1, 1, 1, 100, 1, 1, 100, 1 };
+
+            int step1 = 0;
+            int step2 = 0;
+
+            for (int i = 0; i< cost.Length;i++)
+            {
+                int currentcost = cost[i] + Math.Min(step1, step2);
+                step1 = step2;
+                step2 = currentcost;
+            }
+
+            int y = Math.Min(step1 , step2);
+            return y;
+        }
     }
 }
 
