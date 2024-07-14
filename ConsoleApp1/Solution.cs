@@ -3654,6 +3654,36 @@ namespace ConsoleApp1
 
             return res;
         }
+
+        public static void sortColors()
+        {
+            int[] num = { 2, 0, 2, 1, 1, 0 };
+
+            int start = 0, end = num.Length - 1, index = 0;
+            while (start < end && index <= end)
+            {
+                if (num[index]==0)
+                {
+                    num[index] = num[start];
+                    num[start] = 0;
+                    start++;
+                    index++;
+                }
+                else if (num[index] == 2)
+                {
+                    num[index] = num[end];
+                    num[end] = 2;
+                    end--;
+                }
+                else
+                {
+                    index++;
+                }
+            }
+            Console.WriteLine(num);
+
+            
+        }
     }
 }
 
