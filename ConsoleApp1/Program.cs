@@ -82,7 +82,7 @@ namespace ConsoleApp1
             //{
             //    Console.WriteLine("No");
             //}
-            var ss = Solution.longpressed();
+            var ss = Solution.GoatLatin();
             //TicTakToe ticTakToe = new TicTakToe();
             //int row = 0;
             //int col = 0;

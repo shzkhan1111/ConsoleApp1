@@ -3631,6 +3631,29 @@ namespace ConsoleApp1
 
                 
         }
+
+        public static string GoatLatin()
+        {
+            string s = "I speak Goat Latin apples and oranges";
+            //vegins with a vovel append ma
+            //else remove the first letter append it at the end and add ma 
+            char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
+            string[] words = s.Split(' ');
+            for (int i = 0; i < words.Length;i++)
+            {
+                if (vowels.Contains(words[i][0]))
+                {
+                    words[i] = words[i].Substring(1) + words[i][0] +"ma";
+                }
+                else
+                {
+                    words[i] = words[i] + "ma";
+                }
+            }
+            string res = string.Join(' ', words);
+
+            return res;
+        }
     }
 }
 
