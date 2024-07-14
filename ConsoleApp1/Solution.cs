@@ -3684,6 +3684,62 @@ namespace ConsoleApp1
 
             
         }
+
+        public static bool lemonadechange()
+        {
+            int[] num = { 5, 5, 5, 10, 20    };
+            int five = 0;
+            int tens = 0;
+
+            foreach (int n in num)
+            {
+                if (n == 5)
+                {
+                    five++;
+                }
+                else if (n == 10)
+                {
+                    tens++;
+                    five--;
+                }
+                else
+                {
+                    if (tens > 0)
+                    {
+                        tens--;
+                        five--;
+                    }
+                    else
+                    {
+                        five -= 3;
+                    }
+                }
+
+                if (five < 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static int fib()
+        {
+            int n = 6;
+            int a = 0, b = 1, sum = 0;
+            while (n > 1)
+            {
+                sum = a + b;
+                a = b;
+                b = sum;
+
+                n--;
+            }
+            Console.WriteLine(sum);
+            return sum;
+
+        }
     }
 }
 
