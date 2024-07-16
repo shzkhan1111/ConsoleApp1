@@ -3115,8 +3115,8 @@ namespace ConsoleApp1
             {
                 for (int j = 0; j < col; j++)
                 {
-                    max_colarray[j] = Math.Max(grid[i][j] , max_colarray[j]);
-                    max_rowarray[i] = Math.Max(grid[i][j] , max_rowarray[i]);
+                    max_colarray[j] = Math.Max(grid[i][j], max_colarray[j]);
+                    max_rowarray[i] = Math.Max(grid[i][j], max_rowarray[i]);
                 }
             }
 
@@ -3141,24 +3141,24 @@ namespace ConsoleApp1
         public static IList<string> LetterCombinations()
         {
             string digits = "23";
-                string[] charmapping = new string[] { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
-                Queue<string> outputArray = new Queue<string>();
-                outputArray.Enqueue("");
-                for (int i = 0; i < digits.Length; i++)
+            string[] charmapping = new string[] { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+            Queue<string> outputArray = new Queue<string>();
+            outputArray.Enqueue("");
+            for (int i = 0; i < digits.Length; i++)
+            {
+                int dig = digits[i] - '0';
+                string character = charmapping[dig];
+                while (outputArray.Peek().Length == i)
                 {
-                    int dig = digits[i] - '0';
-                    string character = charmapping[dig];
-                    while (outputArray.Peek().Length == i)
+                    string o = outputArray.Dequeue();
+                    foreach (var c in character)
                     {
-                        string o = outputArray.Dequeue();
-                        foreach (var c in character)
-                        {
-                            outputArray.Enqueue(o + c);
-                        }
+                        outputArray.Enqueue(o + c);
                     }
                 }
-                List<string> ss = new List<string>(outputArray);
-                return ss;
+            }
+            List<string> ss = new List<string>(outputArray);
+            return ss;
         }
 
         //here 1
@@ -3190,7 +3190,7 @@ namespace ConsoleApp1
                 fast = fast.next.next;
                 slow = slow.next;
             }
-            
+
             //reverse so that the last element can be inserted as in odd eeven list 
             ListNode prev = null;
             ListNode n1 = slow;
@@ -3283,7 +3283,7 @@ namespace ConsoleApp1
                     rsum = rsum + stops[rig];
                     rig--;
                 }
-                 
+
             }
             int min = Math.Min(lsum, rsum);
             return min;
@@ -3325,8 +3325,8 @@ namespace ConsoleApp1
         {
             string para = "Bob hit the ball the ball ball ball was far from where it was";
             string[] banned = new string[] { "hit" };
-            HashSet<string> bannedword= new HashSet<string>(); ;
-            Dictionary<string, int>  wordcount= new Dictionary<string, int>();
+            HashSet<string> bannedword = new HashSet<string>(); ;
+            Dictionary<string, int> wordcount = new Dictionary<string, int>();
             foreach (var word in banned)
             {
                 bannedword.Add(word);
@@ -3364,7 +3364,7 @@ namespace ConsoleApp1
         {
             int[] n2 = new int[] { 4, 1, 2 };
             //int[] n2 = new int[] { 1,3,4,2};
-            int[] n1 = new int[] { 1,3,2,4};
+            int[] n1 = new int[] { 1, 3, 2, 4 };
 
             int[] ans = new int[n2.Length];
             //dictionary for next greatest elemebt 
@@ -3403,7 +3403,7 @@ namespace ConsoleApp1
             int[] ans = new int[n1.Length];
             Array.Fill(ans, -1);
             Stack<int> stack = new Stack<int>();
-            for (int i = 0; i < n * 2;i++)
+            for (int i = 0; i < n * 2; i++)
             {
                 while (stack.Count > 0 && n1[stack.Peek()] < n1[i % n])
                 {
@@ -3448,7 +3448,7 @@ namespace ConsoleApp1
             int n = vals.Count();
             for (int i = 0; i < n * 2; i++)
             {
-                while(stack.Count > 0 && vals[stack.Peek()] < vals[i % n])
+                while (stack.Count > 0 && vals[stack.Peek()] < vals[i % n])
                 {
                     ans[stack.Pop()] = vals[i % n];
                 }
@@ -3460,7 +3460,7 @@ namespace ConsoleApp1
             return ans;
         }
 
-        public static  string decode_string()
+        public static string decode_string()
         {
             string s = "3[a2[c]]";
             //accaccacc
@@ -3469,7 +3469,7 @@ namespace ConsoleApp1
             Stack<string> word = new Stack<string>();
             int i = 0;
             string res = "";
-            while ( i < s.Length)
+            while (i < s.Length)
             {
                 if (char.IsDigit(s[i]))
                 {
@@ -3490,13 +3490,13 @@ namespace ConsoleApp1
                 else if (s[i] == ']')
                 {
                     int c1 = count.Pop();
-                    for (int j = 0;j < c1;j++)
+                    for (int j = 0; j < c1; j++)
                     {
                         res += res;
                     }
                     res = word.Pop() + res;
                     //res = word.Pop() + res;
-                    
+
                     i++;
                 }
                 else
@@ -3525,7 +3525,7 @@ namespace ConsoleApp1
                 position.Add(d);
                 d++;
             }
-             d = s.Length;
+            d = s.Length;
             for (int i = s.Length - 1; i >= 0; i--)
             {
                 if (s[i] == l)
@@ -3543,10 +3543,10 @@ namespace ConsoleApp1
 
         public static int[] rotatearray()
         {
-            int[] array = new int[] {7,6,5,4,3,2,1 };
+            int[] array = new int[] { 7, 6, 5, 4, 3, 2, 1 };
             int rotatevalue = 3;
             int len = array.Length;
-            int[] arrnew = array.TakeLast(rotatevalue).Concat(array.Take(len  - rotatevalue)).ToArray();
+            int[] arrnew = array.TakeLast(rotatevalue).Concat(array.Take(len - rotatevalue)).ToArray();
 
             return arrnew;
         }
@@ -3588,10 +3588,11 @@ namespace ConsoleApp1
 
         public static bool longpressed()
         {
-            string name= "vtkgn";
+            string name = "vtkgn";
             string typed = "vttkgnn";
 
-            if (typed.Length < name.Length) {
+            if (typed.Length < name.Length)
+            {
                 return false;
             }
 
@@ -3601,7 +3602,7 @@ namespace ConsoleApp1
             {
                 if (typed[i] == name[j])
                 {
-                    i++;j++;
+                    i++; j++;
                 }
                 else if (typed[i] != name[j])
                 {
@@ -3617,7 +3618,7 @@ namespace ConsoleApp1
             }
             while (i < typed.Length)
             {
-                if (typed[i] == typed[i-1])
+                if (typed[i] == typed[i - 1])
                 {
                     i++;
                 }
@@ -3626,10 +3627,10 @@ namespace ConsoleApp1
                     return false;
                 }
             }
-            bool ans = (i == (typed.Length ) && j == (name.Length));
+            bool ans = (i == (typed.Length) && j == (name.Length));
             return ans;
 
-                
+
         }
 
         public static string GoatLatin()
@@ -3639,11 +3640,11 @@ namespace ConsoleApp1
             //else remove the first letter append it at the end and add ma 
             char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
             string[] words = s.Split(' ');
-            for (int i = 0; i < words.Length;i++)
+            for (int i = 0; i < words.Length; i++)
             {
                 if (vowels.Contains(words[i][0]))
                 {
-                    words[i] = words[i].Substring(1) + words[i][0] +"ma";
+                    words[i] = words[i].Substring(1) + words[i][0] + "ma";
                 }
                 else
                 {
@@ -3662,7 +3663,7 @@ namespace ConsoleApp1
             int start = 0, end = num.Length - 1, index = 0;
             while (start < end && index <= end)
             {
-                if (num[index]==0)
+                if (num[index] == 0)
                 {
                     num[index] = num[start];
                     num[start] = 0;
@@ -3682,12 +3683,12 @@ namespace ConsoleApp1
             }
             Console.WriteLine(num);
 
-            
+
         }
 
         public static bool lemonadechange()
         {
-            int[] num = { 5, 5, 5, 10, 20    };
+            int[] num = { 5, 5, 5, 10, 20 };
             int five = 0;
             int tens = 0;
 
@@ -3744,11 +3745,11 @@ namespace ConsoleApp1
         public static int mincostclimblingstairs()
         {
             int[] cost = { 1, 100, 1, 1, 1, 100, 1, 1, 100, 1 };
-            for (int i = 2; i < cost.Length;i++)
+            for (int i = 2; i < cost.Length; i++)
             {
-                cost[i] += Math.Min(cost[i-1] , cost[i - 2]);
+                cost[i] += Math.Min(cost[i - 1], cost[i - 2]);
             }
-            int res = Math.Min(cost[cost.Length - 1] , cost[cost.Length - 2]);
+            int res = Math.Min(cost[cost.Length - 1], cost[cost.Length - 2]);
 
             return res;
         }
@@ -3760,15 +3761,41 @@ namespace ConsoleApp1
             int step1 = 0;
             int step2 = 0;
 
-            for (int i = 0; i< cost.Length;i++)
+            for (int i = 0; i < cost.Length; i++)
             {
                 int currentcost = cost[i] + Math.Min(step1, step2);
                 step1 = step2;
                 step2 = currentcost;
             }
 
-            int y = Math.Min(step1 , step2);
+            int y = Math.Min(step1, step2);
             return y;
+        }
+
+        public static int smallestrange1()
+        {
+            int[] array = { 1, 3, 6 };
+            int k = 2;
+            int min = int.MaxValue;
+            int max = int.MinValue;
+
+            foreach (int a in array)
+            {
+                if (min > a)
+                {
+                    min = a;
+                }
+                if (max < a)
+                {
+                    max = a;
+                }
+            }
+            int res = (max - k) - (min + k);
+            if (res < 0)
+            {
+                res = 0;
+            }
+            return res;
         }
     }
 }
