@@ -3798,14 +3798,14 @@ namespace ConsoleApp1
             }
             return res;
         }
-       /// <summary>
-       /// 0000 0202
-       /// 0100
-       /// 0200
-       /// 0201
-       /// 0202
-       /// </summary>
-       /// <returns></returns>
+        /// <summary>
+        /// 0000 0202
+        /// 0100
+        /// 0200
+        /// 0201
+        /// 0202
+        /// </summary>
+        /// <returns></returns>
         public static int openlock()
         {
             string[] deadends = { "0201", "0101", "0102", "1212", "2002" };
@@ -3830,11 +3830,11 @@ namespace ConsoleApp1
                     {
                         return level;
                     }
-                    for (int i = 0;i < 4;i++)
+                    for (int i = 0; i < 4; i++)
                     {
-                        
+
                         char currentchar = currentstring[i];
-                        char upchar = currentchar == '9' ? '0' : (char)(currentchar  + 1);
+                        char upchar = currentchar == '9' ? '0' : (char)(currentchar + 1);
                         char downchar = currentchar == '0' ? '9' : (char)(currentchar - 1);
                         string upstring = currentstring.Substring(0, i) + upchar + currentstring.Substring(i + 1);
                         string downstring = currentstring.Substring(0, i) + downchar + currentstring.Substring(i + 1);
@@ -3869,25 +3869,25 @@ namespace ConsoleApp1
             int[] A = new int[] { 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 };
             int K = 2;
 
-                int i = 0, j = 0;
+            int i = 0, j = 0;
 
-                while(i < A.Length)
+            while (i < A.Length)
+            {
+                if (A[i] == 0)
                 {
-                    if (A[i] == 0)
-                    {
-                        K--;
-                    }
-                    if (K < 0)
-                    {
-                        if (A[j] == 0)
-                        {
-                            K++;
-                        }
-                        j++;
-                    }
-                    i++;
+                    K--;
                 }
-                return i - j;
+                if (K < 0)
+                {
+                    if (A[j] == 0)
+                    {
+                        K++;
+                    }
+                    j++;
+                }
+                i++;
+            }
+            return i - j;
         }
         public static int removeElements()
         {
@@ -3898,7 +3898,7 @@ namespace ConsoleApp1
                 return 0;
             }
             int start = 0;
-            for (int i = 0; i < nums.Length;i++)
+            for (int i = 0; i < nums.Length; i++)
             {
                 if (nums[i] != val)
                 {
@@ -3907,6 +3907,34 @@ namespace ConsoleApp1
                 }
             }
             return start;
+        }
+        public static int longestcharacternonrepeating()
+        {
+            string s = "AABABBA";
+            int k = 1;
+            int[] charcount = new int[26];
+
+            int start = 0;
+            int maxcount = 0;
+            int maxlength = 0;
+
+            for (int end = 0; end < s.Length; end++)
+            {
+                charcount[s[end] - 'A']++;
+                int currentmax = charcount[s[end] - 'A'];
+                maxcount = Math.Max(maxcount, currentmax);
+
+                while (end - start + 1 - maxcount > k)
+                {
+                    charcount[s[start] - 'A']--;
+                    start++;
+                }
+                int currentlength = end - start + 1;
+                maxlength = Math.Max(maxlength, currentlength);
+            }
+
+            return maxlength;
+            
         }
 
     }
