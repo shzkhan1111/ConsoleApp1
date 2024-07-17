@@ -82,8 +82,8 @@ namespace ConsoleApp1
             //{
             //    Console.WriteLine("No");
             //}
-            Solution.smallestrange1();
-            //var ss = Solution.sortColors();
+            //Solution.openlock();
+            var ss = Solution.removeElements();
             //TicTakToe ticTakToe = new TicTakToe();
             //int row = 0;
             //int col = 0;

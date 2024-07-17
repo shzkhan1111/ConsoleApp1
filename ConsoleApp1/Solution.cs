@@ -5,6 +5,7 @@ using System.ComponentModel.Design.Serialization;
 using System.Diagnostics.Contracts;
 using System.IO.MemoryMappedFiles;
 using System.Linq;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -3796,6 +3797,116 @@ namespace ConsoleApp1
                 res = 0;
             }
             return res;
+        }
+       /// <summary>
+       /// 0000 0202
+       /// 0100
+       /// 0200
+       /// 0201
+       /// 0202
+       /// </summary>
+       /// <returns></returns>
+        public static int openlock()
+        {
+            string[] deadends = { "0201", "0101", "0102", "1212", "2002" };
+            string target = "0202";
+            HashSet<string> visited = new HashSet<string>();
+            Queue<string> queue = new Queue<string>();
+            queue.Enqueue("0000");
+            visited.Add("0000");
+            int level = 0;
+            while (queue.Count > 0)
+            {
+                int size = queue.Count;
+                while (size > 0)
+                {
+                    string currentstring = queue.Dequeue();
+                    if (deadends.Contains(currentstring))
+                    {
+                        size--;
+                        continue;
+                    }
+                    if (currentstring == target)
+                    {
+                        return level;
+                    }
+                    for (int i = 0;i < 4;i++)
+                    {
+                        
+                        char currentchar = currentstring[i];
+                        char upchar = currentchar == '9' ? '0' : (char)(currentchar  + 1);
+                        char downchar = currentchar == '0' ? '9' : (char)(currentchar - 1);
+                        string upstring = currentstring.Substring(0, i) + upchar + currentstring.Substring(i + 1);
+                        string downstring = currentstring.Substring(0, i) + downchar + currentstring.Substring(i + 1);
+
+                        if (upstring == target || downstring == target)
+                        {
+                            return (level);
+                        }
+
+                        if (!visited.Contains(upstring) && !deadends.Contains(upstring))
+                        {
+                            visited.Add(upstring);
+                            queue.Enqueue(upstring);
+                        }
+                        if (!visited.Contains(downstring) && !deadends.Contains(downstring))
+                        {
+                            visited.Add(downstring);
+                            queue.Enqueue(downstring);
+                        }
+
+                    }
+                    size--;
+                }
+                level++;
+            }
+
+            return -1;
+        }
+
+        public static int longestOnes()
+        {
+            int[] A = new int[] { 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 };
+            int K = 2;
+
+                int i = 0, j = 0;
+
+                while(i < A.Length)
+                {
+                    if (A[i] == 0)
+                    {
+                        K--;
+                    }
+                    if (K < 0)
+                    {
+                        if (A[j] == 0)
+                        {
+                            K++;
+                        }
+                        j++;
+                    }
+                    i++;
+                }
+                return i - j;
+        }
+        public static int removeElements()
+        {
+            int[] nums = { 0, 1, 2, 2, 3, 0, 4, 2 };
+            int val = 2;
+            if (nums.Length == 0)
+            {
+                return 0;
+            }
+            int start = 0;
+            for (int i = 0; i < nums.Length;i++)
+            {
+                if (nums[i] != val)
+                {
+                    nums[start] = nums[i];
+                    start++;
+                }
+            }
+            return start;
         }
     }
 }
