@@ -3934,12 +3934,12 @@ namespace ConsoleApp1
             }
 
             return maxlength;
-            
+
         }
 
         public static int pivotindex()
         {
-            int[] nums = { 1, 7, 3,6,5,6};
+            int[] nums = { 1, 7, 3, 6, 5, 6 };
 
             int sum = 0;
             int left_sum = 0;
@@ -3947,8 +3947,8 @@ namespace ConsoleApp1
             {
                 sum += n;
             }
-            
-            for (int i = 0; i< nums.Length; i++)
+
+            for (int i = 0; i < nums.Length; i++)
             {
                 int rightsum = sum - nums[i] - left_sum;
                 if (rightsum == left_sum)
@@ -3957,8 +3957,51 @@ namespace ConsoleApp1
                 }
                 left_sum += nums[i];
             }
-           
+
             return -1;
+        }
+
+        public static bool IsAlienSorted()
+        {
+            string[] words = { "hello", "leetcode" };
+            string order = "hlabcdefgijkmnopqrstuvwxyz";
+            int[] charmap = new int[26];
+            //create a dictionary
+            for (int i = 0; i < order.Length; i++)
+            {
+                charmap[order[i] - 'a'] = i;
+            }
+            for (int i = 1; i < words.Length;i++)
+            {
+                int ans = comparechars(words[i - 1], words[i], charmap);
+                if (ans > 0)
+                {
+                    return false;
+                }   
+            }
+            return true;
+        }
+        private static int comparechars(string s1, string s2, int[] charmap)
+        {
+            //if s1 < s2 ret -ve or 0 
+            //else +ve
+            int i = 0;
+            int j = 0;
+            while (i < s1.Length && j < s2.Length)
+            {
+                if (charmap[s1[i] - 'a'] < charmap[s2[j] - 'a'])
+                {
+                    return -1;
+                }
+                else if (charmap[s1[i] - 'a'] > charmap[s2[j] - 'a'])
+                {
+                    return 1;
+                }
+                i++; j++;
+            }
+            return s1.Length - s2.Length;
+
+
         }
 
     }
