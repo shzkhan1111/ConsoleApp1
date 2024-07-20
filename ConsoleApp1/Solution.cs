@@ -3971,13 +3971,13 @@ namespace ConsoleApp1
             {
                 charmap[order[i] - 'a'] = i;
             }
-            for (int i = 1; i < words.Length;i++)
+            for (int i = 1; i < words.Length; i++)
             {
                 int ans = comparechars(words[i - 1], words[i], charmap);
                 if (ans > 0)
                 {
                     return false;
-                }   
+                }
             }
             return true;
         }
@@ -4003,6 +4003,65 @@ namespace ConsoleApp1
 
 
         }
+
+        public static int[] SearchRange()
+        {
+            int[] nums = { 5, 7, 7, 8, 8, 10 };
+            int target = 8;
+            int[] output = new int[2];
+            output[0] = findfirstindex(nums, target);
+            output[1] = findsecondindex(nums, target);
+            return output;
+
+
+        }
+        private static int findfirstindex(int[] nums , int target)
+        {
+            int start = 0;
+            int end = nums.Length - 1;
+            int index = -1;
+            while (start <= end)
+            {
+                int midpoint = start + (end - start) / 2;
+                if (nums[midpoint] < target)
+                {
+                    start = midpoint + 1;
+                }
+                else
+                {
+                    end = midpoint - 1;
+                }
+                if (nums[midpoint] == target)
+                {
+                    index = midpoint;
+                }
+            }
+            return index;
+        }
+        private static int findsecondindex(int[] nums, int target)
+        {
+            int start = 0;
+            int end = nums.Length - 1;
+            int index = -1;
+            while (start <= end)
+            {
+                int midpoint = start + (end - start) / 2;
+                if (nums[midpoint] <= target)
+                {
+                    start = midpoint + 1;
+                }
+                else
+                {
+                    end = midpoint - 1;
+                }
+                if (nums[midpoint] == target)
+                {
+                    index = midpoint;
+                }
+            }
+            return index;
+        }
+
 
     }
 }
