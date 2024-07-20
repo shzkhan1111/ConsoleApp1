@@ -3937,6 +3937,30 @@ namespace ConsoleApp1
             
         }
 
+        public static int pivotindex()
+        {
+            int[] nums = { 1, 7, 3,6,5,6};
+
+            int sum = 0;
+            int left_sum = 0;
+            foreach (int n in nums)
+            {
+                sum += n;
+            }
+            
+            for (int i = 0; i< nums.Length; i++)
+            {
+                int rightsum = sum - nums[i] - left_sum;
+                if (rightsum == left_sum)
+                {
+                    return i;
+                }
+                left_sum += nums[i];
+            }
+           
+            return -1;
+        }
+
     }
 }
 
