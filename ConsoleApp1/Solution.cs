@@ -4015,7 +4015,7 @@ namespace ConsoleApp1
 
 
         }
-        private static int findfirstindex(int[] nums , int target)
+        private static int findfirstindex(int[] nums, int target)
         {
             int start = 0;
             int end = nums.Length - 1;
@@ -4062,7 +4062,29 @@ namespace ConsoleApp1
             return index;
         }
 
+        public static int[][] FlipAndInvertImage()
+        {
+            int[][] image = new int[][] {
+                                    new int[] { 1, 1, 0 },
+                                    new int[] { 1, 0, 1 },
+                                    new int[] { 0, 0, 0 }
+                                };
+            for (int i = 0; i < image.Length;i++)
+            {
+                int start = 0;
+                int end = image[i].Length - 1;
+                while (start <= end)
+                {
+                    int temp = image[i][start] == 1 ? 0 : 1;
+                    image[i][start] = image[i][end] == 1 ? 0 : 1;
+                    image[i][end] = temp;
+                    start++;
+                    end--;
+                }
+            }
 
+            return image;
+        }
     }
 }
 

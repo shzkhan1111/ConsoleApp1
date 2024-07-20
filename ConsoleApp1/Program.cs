@@ -83,7 +83,7 @@ namespace ConsoleApp1
             //    Console.WriteLine("No");
             //}
             //Solution.openlock();
-            var ss = Solution.SearchRange();
+            var ss = Solution.FlipAndInvertImage();
             //TicTakToe ticTakToe = new TicTakToe();
             //int row = 0;
             //int col = 0;
