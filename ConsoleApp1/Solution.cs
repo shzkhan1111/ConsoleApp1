@@ -4085,6 +4085,31 @@ namespace ConsoleApp1
 
             return image;
         }
+
+        public static int[] NumberOfLines()
+        {
+
+            int[] widths = { 4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+            string s = "bbbcccdddaaa";
+
+            int[] res = new int[2];
+            int numoflines = 1;
+            int width = 0;
+            for (int i = 0; i < s.Length;i++)
+            {
+                int currentwidth = widths[s[i] - 'a'];
+                if (width + currentwidth > 100)
+                {
+                    numoflines++;
+                    width = 0;
+                }
+                width += currentwidth;
+            }
+
+            res[0] = numoflines;
+            res[1] = width;
+            return res;
+        }
     }
 }
 
