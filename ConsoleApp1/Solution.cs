@@ -4110,6 +4110,84 @@ namespace ConsoleApp1
             res[1] = width;
             return res;
         }
+
+
+        public static  int LongestPalindrome()
+        {
+            string s = "abccccdd";
+
+            var dic = s.GroupBy(x => x)
+                .Select(y => new { key = y.Key, count = y.Count() })
+                .ToList();
+
+            int count = 0;
+            int issingle = 0;
+            foreach(var x in dic)
+            {
+                int currentcount = (x.count / 2) * 2;
+                if (issingle == 0 && x.count % 2 != 0)
+                {
+                    issingle = 1;
+                }
+                count += currentcount;
+            }
+            int ans = count + issingle;
+
+            return ans;
+        }
+
+        public static int Search( )
+        {
+            int[] nums = { 3 , 4, 5, 6, 7, 0, 1, 2 };
+            int target = 4;
+            //find the mid point 
+            int left = 0;
+            int right = nums.Length - 1;
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+                if (nums[mid] >= nums[right])
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid;
+                }
+            }
+            int start = left;
+
+            left = 0;
+            right = nums.Length - 1;
+
+            if (target >= nums[start] && target <= nums[right])
+            {
+                left = start;
+            }
+            else
+            {
+                right = start - 1;
+            }
+
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+                if (nums[mid] == target)
+                {
+                    return mid;
+                }
+                else if(target > nums[mid])
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+
+            return -1;
+        }
     }
 }
 
