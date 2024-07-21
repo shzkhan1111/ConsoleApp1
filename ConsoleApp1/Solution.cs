@@ -4188,6 +4188,11 @@ namespace ConsoleApp1
 
             return -1;
         }
+        public static void DeleteNode(ListNode node)
+        {
+            node.val = node.next.val;
+            node.next = node.next.next;
+        }
     }
 }
 
