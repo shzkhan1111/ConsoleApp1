@@ -4216,6 +4216,47 @@ namespace ConsoleApp1
             }
             return prefix;
         }
+
+        public static bool IsValidParenthesis()
+        {
+            string s = "]";
+            
+            Stack<char> stack = new Stack<char>();
+            foreach (var a in s)
+            {
+                if (a == '[' || a == '(' || a == '{')
+                {
+                    stack.Push(a);
+                }
+                else
+                {
+                    if (stack.Count <= 0)
+                    {
+                        return false;
+                    }
+                    else if(a == ']' && stack.Peek() != '[')
+                    {
+                        return false;
+                    }
+                    else if (a == '}' && stack.Peek() != '{')
+                    {
+                        return false;
+                    }
+                    else if (a == ')' && stack.Peek() != '(')
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        //valid pop
+                        stack.Pop();
+                    }
+                }
+
+            }
+            return stack.Count() <= 0;
+
+        }
     }
 }
 

@@ -83,7 +83,7 @@ namespace ConsoleApp1
             //    Console.WriteLine("No");
             //}
             //Solution.openlock();
-            var ss = Solution.LongestCommonPrefix();
+            var ss = Solution.IsValidParenthesis();
             //TicTakToe ticTakToe = new TicTakToe();
             //int row = 0;
             //int col = 0;
@@ -111,6 +111,6 @@ namespace ConsoleApp1
 
 
 
-        }
+            }
     }
 }
