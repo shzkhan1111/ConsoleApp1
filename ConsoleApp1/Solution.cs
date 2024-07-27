@@ -4069,7 +4069,7 @@ namespace ConsoleApp1
                                     new int[] { 1, 0, 1 },
                                     new int[] { 0, 0, 0 }
                                 };
-            for (int i = 0; i < image.Length;i++)
+            for (int i = 0; i < image.Length; i++)
             {
                 int start = 0;
                 int end = image[i].Length - 1;
@@ -4095,7 +4095,7 @@ namespace ConsoleApp1
             int[] res = new int[2];
             int numoflines = 1;
             int width = 0;
-            for (int i = 0; i < s.Length;i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 int currentwidth = widths[s[i] - 'a'];
                 if (width + currentwidth > 100)
@@ -4112,7 +4112,7 @@ namespace ConsoleApp1
         }
 
 
-        public static  int LongestPalindrome()
+        public static int LongestPalindrome()
         {
             string s = "abccccdd";
 
@@ -4122,7 +4122,7 @@ namespace ConsoleApp1
 
             int count = 0;
             int issingle = 0;
-            foreach(var x in dic)
+            foreach (var x in dic)
             {
                 int currentcount = (x.count / 2) * 2;
                 if (issingle == 0 && x.count % 2 != 0)
@@ -4136,9 +4136,9 @@ namespace ConsoleApp1
             return ans;
         }
 
-        public static int Search( )
+        public static int Search()
         {
-            int[] nums = { 3 , 4, 5, 6, 7, 0, 1, 2 };
+            int[] nums = { 3, 4, 5, 6, 7, 0, 1, 2 };
             int target = 4;
             //find the mid point 
             int left = 0;
@@ -4176,7 +4176,7 @@ namespace ConsoleApp1
                 {
                     return mid;
                 }
-                else if(target > nums[mid])
+                else if (target > nums[mid])
                 {
                     left = mid + 1;
                 }
@@ -4198,14 +4198,14 @@ namespace ConsoleApp1
             string[] strs = { "flower", "flow", "flight" };
 
 
-            if (strs.Length == 0) 
+            if (strs.Length == 0)
             {
                 return "";
             }
             string prefix = strs[0];
-            for (int i = 1;i < strs.Length;i++)
+            for (int i = 1; i < strs.Length; i++)
             {
-                while(!strs[i].StartsWith(prefix))
+                while (!strs[i].StartsWith(prefix))
                 {
                     prefix = prefix.Substring(0, prefix.Length - 1);
                 }
@@ -4220,7 +4220,7 @@ namespace ConsoleApp1
         public static bool IsValidParenthesis()
         {
             string s = "]";
-            
+
             Stack<char> stack = new Stack<char>();
             foreach (var a in s)
             {
@@ -4234,7 +4234,7 @@ namespace ConsoleApp1
                     {
                         return false;
                     }
-                    else if(a == ']' && stack.Peek() != '[')
+                    else if (a == ']' && stack.Peek() != '[')
                     {
                         return false;
                     }
@@ -4256,6 +4256,33 @@ namespace ConsoleApp1
             }
             return stack.Count() <= 0;
 
+        }
+
+        public static int FindContentChildren()
+        {
+            int[] g = { 1, 2, 3 };
+            int[] s = { 1, 1 };
+
+            Array.Sort(s);
+            Array.Sort(g);
+
+
+            int a_pointer = 0;
+            int b_pointer = 0;
+
+            while (a_pointer < s.Length && b_pointer < g.Length)
+            {
+                if (g[b_pointer] <= s[a_pointer])
+                {
+                    a_pointer++;
+                    b_pointer++;
+                }
+                else
+                {
+                    a_pointer++;
+                }
+            }
+            return b_pointer;
         }
     }
 }
