@@ -4319,26 +4319,26 @@ namespace ConsoleApp1
                 else
                 {
                     charToWords[pattern[i]] = words[i];
-                    wordsTochar[words[i]]= pattern[i];
+                    wordsTochar[words[i]] = pattern[i];
                 }
             }
 
             return true;
-            
+
         }
         public static bool IsAnagram()
         {
             string s = "anagram";
             string t = "nagaram";
 
-            int[] charcount1 = new int[26]; 
+            int[] charcount1 = new int[26];
             int[] charcount2 = new int[26];
 
             if (s.Length != t.Length)
             {
                 return false;
             }
-            for (int i = 0; i < s.Length;i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 charcount1[s[i] - 'a']++;
                 charcount2[t[i] - 'a']++;
@@ -4355,7 +4355,7 @@ namespace ConsoleApp1
 
         public static int ThirdMax()
         {
-            int[] nums = { 1,2 };
+            int[] nums = { 1, 2 };
 
             //1st, 2nd, 3rd
             int m1, m2, m3;
@@ -4381,7 +4381,7 @@ namespace ConsoleApp1
                 visited.Add(n);
             }
 
-            if (visited.Count>= 3)
+            if (visited.Count >= 3)
             {
                 return m3;
             }
@@ -4389,15 +4389,16 @@ namespace ConsoleApp1
             {
                 return m1;
             }
-            
+
         }
 
         public static int[] PlusOne()
         {
-            int[] digits = { 9 ,9,9};
+            int[] digits = { 9, 9, 9 };
             int carry = 1;
             int len = digits.Length - 1;
-            do {
+            do
+            {
                 int sum = digits[len] + carry;
                 digits[len] = sum % 10;
                 carry = sum / 10;
@@ -4460,7 +4461,7 @@ namespace ConsoleApp1
                 return si;
             }
 
-            
+
         }
 
         public static int CountSegments()
@@ -4470,6 +4471,43 @@ namespace ConsoleApp1
             var words = s.Split(' ').Where(x => !string.IsNullOrWhiteSpace(x)).Count();
 
             return words;
+        }
+
+        public static int[][] FloodFill()
+        {
+            int[][] image =
+        {
+            new int[] { 1, 1, 1 },
+            new int[] { 1, 1, 0 },
+            new int[] { 1, 0, 1 }
+        };
+
+
+            int sr, sc, color;
+
+            sr = 1;
+            sc = 1;
+            color = 2;
+            int old_color = image[sr][sc];
+            if (old_color == color)
+            {
+                return image;
+            }
+            FloodFill(image, sr, sc, old_color, color);
+            return image;
+            //solution
+        }
+        private static void FloodFill(int[][] image, int sr , int sc, int old_color, int new_color)
+        {
+            if (sr < 0 || sr >= image.Length || sc < 0 || sc >= image[0].Length || image[sr][sc] != old_color)
+            {
+                return;
+            }
+            image[sr][sc] = new_color;
+            FloodFill(image, sr - 1, sc, old_color, new_color); 
+            FloodFill(image, sr + 1, sc, old_color, new_color); 
+            FloodFill(image, sr, sc - 1, old_color, new_color); 
+            FloodFill(image, sr, sc + 1, old_color, new_color); 
         }
 
     }

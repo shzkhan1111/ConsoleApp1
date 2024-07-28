@@ -110,7 +110,7 @@ namespace ConsoleApp1
             //MethodInfo setValuesAndPrintMethod = type.GetMethod("setValuesandprint", BindingFlags.NonPublic | BindingFlags.Instance);
             //setValuesAndPrintMethod.Invoke(personInstance, new object[] {10, 20});
             #endregion
-            var ss = Solution.CountSegments();
+            var ss = Solution.FloodFill();
 
 
         }
