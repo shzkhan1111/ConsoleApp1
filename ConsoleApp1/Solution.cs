@@ -4392,6 +4392,77 @@ namespace ConsoleApp1
             
         }
 
+        public static int[] PlusOne()
+        {
+            int[] digits = { 9 ,9,9};
+            int carry = 1;
+            int len = digits.Length - 1;
+            do {
+                int sum = digits[len] + carry;
+                digits[len] = sum % 10;
+                carry = sum / 10;
+                len--;
+            } while (carry > 0 && len >= 0);
+            if (carry > 0)
+            {
+                int[] arr = new int[digits.Length + 1];
+                arr[0] = carry;
+                Array.Copy(arr, 1, digits, 0, digits.Length);
+
+                return arr;
+            }
+            return digits;
+        }
+        public static string AddBinary()
+        {
+            string a = "0";
+            string b = "0";
+
+
+            int carry = 0;
+            int len = Math.Min(a.Length, b.Length);
+            int maxlen = Math.Max(a.Length, b.Length);
+            int[] output = new int[maxlen + 1];
+            int i = 0;
+            while (i < len)
+            {
+                int anum = a[a.Length - 1 - i] - '0';
+                int bnum = b[b.Length - 1 - i] - '0';
+
+                int sum = anum + bnum + carry;
+                int rem = sum % 2;
+
+                output[maxlen - i] = rem;
+                carry = sum / 2;
+                i++;
+            }
+            string temp = a.Length > b.Length ? a : b;
+            while (i < temp.Length)
+            {
+                int tnum = temp[temp.Length - 1 - i] - '0';
+                int sum = carry + tnum;
+                int rem = sum % 2;
+                output[(maxlen - i)] = rem;
+
+                carry = sum / 2;
+                i++;
+            }
+            if (carry == 1)
+            {
+                output[0] = 1;
+                string si = string.Join("", output);
+                return si;
+            }
+            else
+            {
+                var t = output.Skip(1).ToArray();
+                string si = string.Join("", t);
+                return si;
+            }
+
+            
+        }
+
     }
 }
 

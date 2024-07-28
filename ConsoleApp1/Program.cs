@@ -21,6 +21,7 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
+            #region commented
             //    char[][] grid = new char[][] {
             //    new char[] { '1', '1', '1', '0', '0' },
             //    new char[] { '1', '1', '0', '1', '0' },
@@ -83,7 +84,7 @@ namespace ConsoleApp1
             //    Console.WriteLine("No");
             //}
             //Solution.openlock();
-            var ss = Solution.ThirdMax();
+
             //TicTakToe ticTakToe = new TicTakToe();
             //int row = 0;
             //int col = 0;
@@ -96,7 +97,7 @@ namespace ConsoleApp1
             //    player++;
             //} while (!ticTakToe.makeAMove(row, col, player % 2));
             //Assembly assembly = Assembly.GetExecutingAssembly();
-            //Type type = assembly.GetType("ConsoleApp1.Person");
+            //Type type = assembly.GetType("ConsoleApp1.Person")    ;
             //object personInstance = Activator.CreateInstance(type);
             //PropertyInfo nameProperty = type.GetProperty("Name");
             //nameProperty.SetValue(personInstance, "Hello someone");
@@ -108,9 +109,10 @@ namespace ConsoleApp1
 
             //MethodInfo setValuesAndPrintMethod = type.GetMethod("setValuesandprint", BindingFlags.NonPublic | BindingFlags.Instance);
             //setValuesAndPrintMethod.Invoke(personInstance, new object[] {10, 20});
+            #endregion
+            var ss = Solution.AddBinary();
 
 
-
-            }
+        }
     }
 }
