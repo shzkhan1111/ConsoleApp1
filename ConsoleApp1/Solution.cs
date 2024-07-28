@@ -4326,6 +4326,72 @@ namespace ConsoleApp1
             return true;
             
         }
+        public static bool IsAnagram()
+        {
+            string s = "anagram";
+            string t = "nagaram";
+
+            int[] charcount1 = new int[26]; 
+            int[] charcount2 = new int[26];
+
+            if (s.Length != t.Length)
+            {
+                return false;
+            }
+            for (int i = 0; i < s.Length;i++)
+            {
+                charcount1[s[i] - 'a']++;
+                charcount2[t[i] - 'a']++;
+            }
+            for (int i = 0; i < 26; i++)
+            {
+                if (charcount1[i] != charcount2[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static int ThirdMax()
+        {
+            int[] nums = { 1,2 };
+
+            //1st, 2nd, 3rd
+            int m1, m2, m3;
+            m1 = m2 = m3 = int.MinValue;
+            HashSet<int> visited = new HashSet<int>();
+            foreach (int n in nums)
+            {
+                if (n > m1 && !visited.Contains(n))
+                {
+                    m3 = m2;
+                    m2 = m1;
+                    m1 = n;
+                }
+                else if (n > m2 && !visited.Contains(n))
+                {
+                    m3 = m2;
+                    m2 = n;
+                }
+                else if (n > m3 && !visited.Contains(n))
+                {
+                    m3 = n;
+                }
+                visited.Add(n);
+            }
+
+            if (visited.Count>= 3)
+            {
+                return m3;
+            }
+            else
+            {
+                return m1;
+            }
+            
+        }
+
     }
 }
 
