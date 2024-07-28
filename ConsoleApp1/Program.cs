@@ -83,7 +83,7 @@ namespace ConsoleApp1
             //    Console.WriteLine("No");
             //}
             //Solution.openlock();
-            var ss = Solution.IsValidParenthesis();
+            var ss = Solution.wordPattern();
             //TicTakToe ticTakToe = new TicTakToe();
             //int row = 0;
             //int col = 0;

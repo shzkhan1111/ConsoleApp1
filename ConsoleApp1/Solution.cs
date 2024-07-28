@@ -6,6 +6,7 @@ using System.Diagnostics.Contracts;
 using System.IO.MemoryMappedFiles;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -4283,6 +4284,47 @@ namespace ConsoleApp1
                 }
             }
             return b_pointer;
+        }
+        public static bool wordPattern()
+        {
+            string pattern = "abba";
+            string s = "dog dog dog dog";
+
+            string[] words = s.Split(' ')
+                .Where(x => !string.IsNullOrWhiteSpace(x))
+                .ToArray();
+
+            Dictionary<char, string> charToWords = new Dictionary<char, string>();
+            Dictionary<string, char> wordsTochar = new Dictionary<string, char>();
+            if (words.Length != pattern.Length)
+            {
+                return false;
+            }
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (charToWords.ContainsKey(pattern[i]))
+                {
+                    if (words[i] != charToWords[pattern[i]])
+                    {
+                        return false;
+                    }
+                }
+                if (wordsTochar.ContainsKey(words[i]))
+                {
+                    if (wordsTochar[words[i]] != pattern[i])
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    charToWords[pattern[i]] = words[i];
+                    wordsTochar[words[i]]= pattern[i];
+                }
+            }
+
+            return true;
+            
         }
     }
 }
