@@ -4510,6 +4510,32 @@ namespace ConsoleApp1
             FloodFill(image, sr, sc + 1, old_color, new_color); 
         }
 
+        public static int[] ProductExceptSelf()
+        {
+            int[] nums = { 1, 2, 3, 4 };
+            int[] leftProd = new int[nums.Length];
+            int[] rightProd = new int[nums.Length];
+            int mul = 1; 
+            for (int i = 0; i < nums.Length;i++)
+            {
+                leftProd[i] = mul;
+                mul *= nums[i];
+            }
+
+            mul = 1;
+            for (int i = nums.Length - 1; i >=0 ; i--)
+            {
+                rightProd[i] = mul;
+                mul *= nums[i];
+            }
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                nums[i] = leftProd[i] * rightProd[i];
+            }
+            return nums;
+        }
+
     }
 }
 
