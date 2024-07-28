@@ -4463,6 +4463,15 @@ namespace ConsoleApp1
             
         }
 
+        public static int CountSegments()
+        {
+            string s = "Hello, my name is John";
+
+            var words = s.Split(' ').Where(x => !string.IsNullOrWhiteSpace(x)).Count();
+
+            return words;
+        }
+
     }
 }
 
