@@ -4535,6 +4535,31 @@ namespace ConsoleApp1
             }
             return nums;
         }
+        public static IList<int> PartitionLabels()
+        {
+            string s = "ababcbacadefegdehijhklij";
+            int[] lastIndex = new int[26];
+            for (int i = 0; i < s.Length; i++)
+            {
+                lastIndex[s[i] - 'a'] = i;
+            }
+
+            int start = 0;
+            int end = 0;
+            List<int> output = new List<int>();
+
+            for (int i = 0; i < s.Length;i++)
+            {
+                end = Math.Max(lastIndex[s[i] - 'a'] , end);
+                if ( i == end )
+                {
+                    output.Add(end - start + 1);
+                    start = end + 1;
+                }
+            }
+
+            return output;
+        }
 
     }
 }
