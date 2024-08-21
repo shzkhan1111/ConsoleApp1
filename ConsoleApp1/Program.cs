@@ -7,6 +7,12 @@ namespace ConsoleApp1
 {
     class Program
     {
+        public enum Statuses {
+            Visited,
+            NotVisited,
+            Visiting
+        }
+
         public class ListNode
         {
             public int val;
@@ -21,6 +27,7 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
+
             #region commented
             //    char[][] grid = new char[][] {
             //    new char[] { '1', '1', '1', '0', '0' },
@@ -28,7 +35,8 @@ namespace ConsoleApp1
             //    new char[] { '1', '1', '0', '0', '0' },
             //    new char[] { '0', '0', '1', '0', '1' }
             //};
-
+            //Statuses s = Statuses.NotVisited;
+            //var uu = s.ToString();
             //var wxs = Solution.NumIslands(grid);
             //Console.WriteLine(wxs);
             //var s = Solution.Pascal_Triangle(0);
@@ -110,7 +118,7 @@ namespace ConsoleApp1
             //MethodInfo setValuesAndPrintMethod = type.GetMethod("setValuesandprint", BindingFlags.NonPublic | BindingFlags.Instance);
             //setValuesAndPrintMethod.Invoke(personInstance, new object[] {10, 20});
             #endregion
-            var ss = Solution.PartitionLabels();
+            var ss = Solution.FindDuplicates();
 
 
         }
