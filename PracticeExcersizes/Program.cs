@@ -30,7 +30,9 @@ List<Employee> employees = new List<Employee>
     new Employee { Name = "Ham", Department = "IT", Salary = 95000 },
     new Employee { Name = "Cam", Department = "HR", Salary = 1750000 }
 };
-HelperClass.PerformGroupBy(employees);
+//HelperClass.PerformGroupBy(employees);
+HelperClass.PLINQ();
+//HelperClass.PerformCustomAggregation(employees);
 //HelperClass.stdcoursesNameJoin(students, courses);
 //HelperClass.stdcoursesNameLeftJoin(students, courses);
 //HelperClass.stdCourseNameCrossJoin(students, courses);

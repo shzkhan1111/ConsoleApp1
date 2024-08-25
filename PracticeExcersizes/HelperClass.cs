@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -172,7 +174,53 @@ namespace PracticeExcersizes
             }
         }
 
-        
+        public static void PerformCustomAggregation(List<Employee> emp)
+        {
+            var p = emp
+                .Select(x => x.Name)
+                    .Aggregate((current, next) => $"{current} : {next}");
+
+            foreach (var e in emp)
+            {
+                Console.WriteLine(e.Name);
+
+            }
+
+                Console.WriteLine(p);
+            
+        }
+
+        public static void PLINQ()
+        {
+            var stopwatch = Stopwatch.StartNew();
+            var collection = Enumerable.Range(0, 10)
+                //multiple task each task run on a different core 
+                .AsParallel()
+                .AsOrdered()
+                //can use .sequential perfrom task that might need the same resource/ slow in paralell 
+                .WithDegreeOfParallelism(3)
+                .Select(HeavyComputation)
+                ;
+            //var test = collection.ToList();
+
+            foreach (var t in collection)
+            {
+                Console.WriteLine(t);
+                
+            }
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+        } 
+        public static int HeavyComputation(int n)
+        {
+            Console.WriteLine($"Working on thread {Environment.CurrentManagedThreadId}");
+            for(long i = 0; i < 10/*000000*/; i++)
+            {
+                n++;
+            }
+            return n;
+        }
+
     }
 
 
